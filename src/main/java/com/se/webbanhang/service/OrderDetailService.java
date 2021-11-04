@@ -17,4 +17,5 @@ public interface OrderDetailService {
     public Order_detail findbyId(int id);
     public void save(Order_detail theOrderDetail);
     public void delete(int id);
+    public List<Order_detail> getOrderDetailByOrderId(int orderId);
 }

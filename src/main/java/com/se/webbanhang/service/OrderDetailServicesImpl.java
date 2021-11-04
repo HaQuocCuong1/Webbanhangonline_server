@@ -6,6 +6,7 @@
 package com.se.webbanhang.service;
 
 import com.se.webbanhang.entity.Order_detail;
+import com.se.webbanhang.entity.Orders;
 import com.se.webbanhang.repository.OrderDetailRespository;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,8 @@ import org.springframework.stereotype.Service;
 public class OrderDetailServicesImpl implements OrderDetailService{
     @Autowired
     private OrderDetailRespository orderDetailRespository;
+    @Autowired
+    private OrderService orderService;
 
     @Override
     public List<Order_detail> findAll() {
@@ -47,5 +50,16 @@ public class OrderDetailServicesImpl implements OrderDetailService{
     @Override
     public void delete(int id) {
         orderDetailRespository.deleteById(id);
+    }
+
+    @Override
+    public List<Order_detail> getOrderDetailByOrderId(int orderId) {
+        Orders theOrder = orderService.findbyId(orderId);
+        List<Order_detail> listOrderDetail = null;
+        if(theOrder != null)
+        {
+            listOrderDetail = theOrder.getListOrderDetail();
+        }
+        return listOrderDetail;
     }
 }

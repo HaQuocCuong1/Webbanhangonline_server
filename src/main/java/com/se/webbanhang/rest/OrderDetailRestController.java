@@ -10,6 +10,7 @@ import com.se.webbanhang.service.OrderDetailService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,10 +23,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderDetailRestController {
     @Autowired
     private OrderDetailService orderDetailService;
-    
+   
     @GetMapping("/orderdetails")
     public List<Order_detail> findAll()
     {
         return orderDetailService.findAll();
+    }
+    @GetMapping("/orderdetails/orders/{orderId}")
+    public List<Order_detail> getOrderDetailByOrderId(@PathVariable int orderId)
+    {
+        return orderDetailService.getOrderDetailByOrderId(orderId);
     }
 }
