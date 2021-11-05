@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `webbanhang`.`Categories` (
   `name` VARCHAR(60) NOT NULL COMMENT 'Tên loại sản phẩm',
   `code` VARCHAR(45) NULL DEFAULT NULL,
   `total_product` INT(11) NOT NULL DEFAULT 0,
+  `avartar` VARCHAR(500) NOT NULL DEFAULT 'no-image.jpg',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -174,6 +175,9 @@ CREATE TABLE IF NOT EXISTS `webbanhang`.`Order_detail` (
   `totalmoney` DOUBLE NOT NULL DEFAULT 0,
   `quantity` INT(11) NOT NULL DEFAULT 1,
   `discount` DOUBLE NULL DEFAULT NULL,
+  `avartar` VARCHAR(500) NOT NULL DEFAULT 'no-image.jpg',
+  `name` VARCHAR(150) NOT NULL COMMENT 'Tên sản phẩm',
+  `status` TINYINT(1) NOT NULL DEFAULT 0,
   `Products_id` INT(11) NOT NULL,
   `Orders_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),

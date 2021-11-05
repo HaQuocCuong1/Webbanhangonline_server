@@ -15,6 +15,7 @@ import com.se.webbanhang.service.OrderDetailService;
 import com.se.webbanhang.service.OrderService;
 import com.se.webbanhang.service.ProductService;
 import com.se.webbanhang.service.UsersService;
+import io.jsonwebtoken.Claims;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +95,8 @@ public class OrderRestController {
                 orderdtail.setQuantity(od.getQuantity());
                 orderdtail.setTotalmoney(od.getTotalmoney());
                 orderdtail.setOrders(theOrder);
+                orderdtail.setAvartar(od.getAvartar());
+                orderdtail.setName(od.getName());
                 
                 theProducts1 = this.productService.findById(od.getProductId());
                 orderdtail.setProducts(theProducts1);

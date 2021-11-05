@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -36,8 +37,21 @@ public class Categories implements Serializable{
     private String code;
     @Column(name = "total_product")
     private int totalproduct;
+    
+    @NotNull
+    @Column(name = "avartar")
+    private String avartar;
+    
     @OneToMany(mappedBy = "categories", cascade=CascadeType.ALL)
     private List<Products> products;
+
+    public String getAvartar() {
+        return avartar;
+    }
+
+    public void setAvartar(String avartar) {
+        this.avartar = avartar;
+    }
 
     
     public List<Products> getProducts() {

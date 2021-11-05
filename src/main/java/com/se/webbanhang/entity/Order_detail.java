@@ -50,7 +50,19 @@ public class Order_detail {
     
     @Column(name = "discount")
     private double discount;
-  
+    
+    @NotNull
+    @Column(name = "avartar")
+    private String avartar;
+    
+    @Column(name = "name")
+    @NotNull
+    private String name;
+    
+    @NotNull
+    @Column(name = "status")
+    private int status;
+    
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Orders orders;

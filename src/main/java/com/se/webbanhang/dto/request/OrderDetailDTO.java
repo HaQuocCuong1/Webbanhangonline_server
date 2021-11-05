@@ -27,5 +27,11 @@ public class OrderDetailDTO {
     
     private double discount;
     
+    private String avartar;
+    
+    private String name;
+    
     public int productId;
+    
+    
 }
