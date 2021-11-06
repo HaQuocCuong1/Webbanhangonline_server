@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface OrderDetailRespository extends JpaRepository<Order_detail, Integer>{
-//    @Query("UPDATE Orders o SET o.status = 1 WHERE o.id = ?1")
-//    @Modifying
-//    public void updateStatusOrder(int id);
+    @Query("UPDATE Order_detail od SET od.status = ?2 WHERE od.id = ?1")
+    @Modifying
+    public void updateStatusOrderDetail(int orderDetailId, int type);
 }

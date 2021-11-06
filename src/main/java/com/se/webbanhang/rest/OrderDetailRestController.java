@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,5 +34,19 @@ public class OrderDetailRestController {
     public List<Order_detail> getOrderDetailByOrderId(@PathVariable int orderId)
     {
         return orderDetailService.getOrderDetailByOrderId(orderId);
+    }
+    @GetMapping("/orderdetails/users/{userId}")
+    public List<Order_detail> getOrderDetailByUser(@PathVariable int userId)
+    {
+        return orderDetailService.getOrderDetailByUserId(userId);
+    }
+    @PostMapping("/status/orderDetail/{orderDetailId}/type/{type}")
+    public String updateFeatured(@PathVariable int orderDetailId, @PathVariable int type)
+    {
+        boolean checkupdate = orderDetailService.updateStatusOrderDetail(orderDetailId, type);
+        if(checkupdate == true)
+            return "Xát nhận đơn hàng thành công!";
+        else
+            return "Xát nhận đơn hàng thất bại!";
     }
 }

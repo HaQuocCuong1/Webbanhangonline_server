@@ -18,4 +18,6 @@ public interface OrderDetailService {
     public void save(Order_detail theOrderDetail);
     public void delete(int id);
     public List<Order_detail> getOrderDetailByOrderId(int orderId);
+    public List<Order_detail> getOrderDetailByUserId(int userId);
+    public boolean updateStatusOrderDetail(int orderDetailId, int type);
 }

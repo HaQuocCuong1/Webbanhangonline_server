@@ -105,11 +105,11 @@ public class UsersRestController {
     {
         if (usersService.existsByUsername(signUpForm.getUsername()))
         {
-            return new ResponseEntity<>(new ReponseMessage("The username existed! Please try agin!"), HttpStatus.OK); 
+            return new ResponseEntity<>(new ReponseMessage("Username tồn tại! Vui lòng thử lại!"), HttpStatus.OK); 
         }
         if (usersService.existsByEmail(signUpForm.getEmail()))
         {
-            return new ResponseEntity<>(new ReponseMessage("The email existed! Please try agin!"), HttpStatus.OK);
+            return new ResponseEntity<>(new ReponseMessage("Email đã tồn tại! Vui lòng thử lại!"), HttpStatus.OK);
         }
         Users theUsers = new Users(signUpForm.getName(), signUpForm.getUsername(), signUpForm.getPhone(), signUpForm.getEmail(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getAddress());
         theUsers.setId(0);
