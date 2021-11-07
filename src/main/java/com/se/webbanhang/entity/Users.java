@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -65,6 +66,8 @@ public class Users {
     private List<Orders> listorders;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Products> products;
+    @OneToOne(mappedBy = "users")
+    private Store store;
     public Users() {
     }
     
@@ -237,6 +240,13 @@ public class Users {
         products.add(theProduct);
     }
 
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
     @Override
     public String toString() {
         return "Users{" + "id=" + id + ", name=" + name + ", username=" + username + ", phone=" + phone + ", email=" + email + ", password=" + password + ", avartar=" + avartar + ", address=" + address + ", status=" + status + ", products=" + products + '}';

@@ -1,5 +1,5 @@
 -- MySQL Workbench Synchronization
--- Generated: 2021-09-25 13:06
+-- Generated: 2021-11-07 11:53
 -- Model: New Model
 -- Version: 1.0
 -- Project: Name of the project
@@ -148,7 +148,7 @@ COLLATE = utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `webbanhang`.`Orders` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `payments` TINYINT(10) NOT NULL DEFAULT 0,
+  `payments` TINYINT(11) NOT NULL DEFAULT 0,
   `deliveryaddress` NVARCHAR(255) NOT NULL,
   `transportfee` DOUBLE NULL DEFAULT NULL,
   `status` TINYINT(10) NOT NULL DEFAULT 0,
@@ -156,7 +156,6 @@ CREATE TABLE IF NOT EXISTS `webbanhang`.`Orders` (
   `namecustomer` NVARCHAR(70) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `phone` VARCHAR(45) NULL DEFAULT NULL,
-  `seller_id` INT(11) NULL DEFAULT NULL,
   `note` TEXT NULL DEFAULT NULL,
   `Users_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -176,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `webbanhang`.`Order_detail` (
   `quantity` INT(11) NOT NULL DEFAULT 1,
   `discount` DOUBLE NULL DEFAULT NULL,
   `avartar` VARCHAR(500) NOT NULL DEFAULT 'no-image.jpg',
-  `name` VARCHAR(150) NOT NULL COMMENT 'Tên sản phẩm',
+  `name` VARCHAR(150) NULL DEFAULT 'Tên sản phẩm',
   `status` TINYINT(1) NOT NULL DEFAULT 0,
   `Products_id` INT(11) NOT NULL,
   `Orders_id` INT(11) NOT NULL,
@@ -243,6 +242,24 @@ CREATE TABLE IF NOT EXISTS `webbanhang`.`Role_user` (
   PRIMARY KEY (`id`),
   INDEX `fk_Role_user_Users1_idx` (`Users_id` ASC) VISIBLE,
   CONSTRAINT `fk_Role_user_Users1`
+    FOREIGN KEY (`Users_id`)
+    REFERENCES `webbanhang`.`Users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `webbanhang`.`Store` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `code` VARCHAR(45) NULL DEFAULT NULL,
+  `name` VARCHAR(70) NULL DEFAULT NULL,
+  `logo` VARCHAR(300) NULL DEFAULT NULL,
+  `datestore` DATETIME NOT NULL,
+  `Users_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_CuaHang_Users1_idx` (`Users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_CuaHang_Users1`
     FOREIGN KEY (`Users_id`)
     REFERENCES `webbanhang`.`Users` (`id`)
     ON DELETE NO ACTION

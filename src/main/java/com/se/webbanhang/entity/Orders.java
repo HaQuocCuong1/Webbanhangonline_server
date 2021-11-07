@@ -68,9 +68,6 @@ public class Orders {
     @Column(name = "phone")
     private String phone;
     
-    @Column(name = "seller_id")
-    private int sellerId;
-    
     @Column(name = "note")
     private String note;
     
@@ -90,7 +87,6 @@ public class Orders {
         this.email = email;
         this.phone = phone;
         this.note = note;
-        this.sellerId = 1;
     }
 
     
