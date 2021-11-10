@@ -65,6 +65,8 @@ public class UsersRestController {
     public UsersRestController(UsersService usersService) {
         this.usersService = usersService;
     }
+    final static String AVARTAR_DEFAULT = "https://res.cloudinary.com/devatchannel/image/upload/v1602752402/avatar/avatar_cugq40.png?fbclid=IwAR1WVZLl0dmt01nM1K4-Lvy30w1-p5XOS7qATZNA7udT-Heak0NA9MvQnys";
+    
     @GetMapping("/users")
     public List<Users> findAll()
     {
@@ -111,7 +113,7 @@ public class UsersRestController {
         {
             return new ResponseEntity<>(new ReponseMessage("Email đã tồn tại! Vui lòng thử lại!"), HttpStatus.OK);
         }
-        Users theUsers = new Users(signUpForm.getName(), signUpForm.getUsername(), signUpForm.getPhone(), signUpForm.getEmail(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getAddress());
+        Users theUsers = new Users(signUpForm.getName(), signUpForm.getUsername(), signUpForm.getPhone(), signUpForm.getEmail(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getAddress(), AVARTAR_DEFAULT);
         theUsers.setId(0);
         String ramdomCode = RandomString.make(64);
         theUsers.setVerificationCode(ramdomCode);
@@ -135,7 +137,8 @@ public class UsersRestController {
         {
             return new ResponseEntity<>(new ReponseMessage("The email existed! Please try agin!"), HttpStatus.OK);
         }
-        Users theUsers = new Users(signUpForm.getName(), signUpForm.getUsername(), signUpForm.getPhone(), signUpForm.getEmail(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getAddress());
+    
+        Users theUsers = new Users(signUpForm.getName(), signUpForm.getUsername(), signUpForm.getPhone(), signUpForm.getEmail(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getAddress(), AVARTAR_DEFAULT);
         theUsers.setId(0);
         String ramdomCode = RandomString.make(64);
         theUsers.setVerificationCode(ramdomCode);

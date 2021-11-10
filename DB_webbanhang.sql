@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `webbanhang`.`Users` (
   `phone` VARCHAR(20) NOT NULL,
   `email` VARCHAR(60) NULL DEFAULT NULL,
   `password` VARCHAR(100) NOT NULL,
-  `avartar` VARCHAR(100) NULL DEFAULT 'no-image.jpg',
+  `avartar` VARCHAR(500) NULL DEFAULT 'no-image.jpg',
   `address` VARCHAR(90) NOT NULL,
   `status` INT(11) NOT NULL DEFAULT 0,
   `verification_code` VARCHAR(64) NULL DEFAULT NULL,

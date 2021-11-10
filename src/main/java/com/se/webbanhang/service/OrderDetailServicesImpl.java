@@ -5,11 +5,13 @@
  */
 package com.se.webbanhang.service;
 
+import com.se.webbanhang.dto.request.OrderDetailDTO;
 import com.se.webbanhang.entity.Order_detail;
 import com.se.webbanhang.entity.Orders;
 import com.se.webbanhang.entity.Products;
 import com.se.webbanhang.entity.Users;
 import com.se.webbanhang.repository.OrderDetailRespository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,16 +72,27 @@ public class OrderDetailServicesImpl implements OrderDetailService{
     public List<Order_detail> getOrderDetailByUserId(int userId) {
        Users theUser = usersService.findbyId(userId);
        List<Order_detail> listOrderDetail = null;
+       List<Order_detail> listOrderDetai2 = new ArrayList<>();
        if(theUser != null)
        {
            List<Products> listProduct = theUser.getProducts();
            for(Products theProducts : listProduct)
            {
                listOrderDetail = theProducts.getListOrderDetail();
+               if(listOrderDetail != null)
+               {
+                    for(Order_detail od : listOrderDetail)
+                    {
+                        if(od != null)
+                        {
+                            listOrderDetai2.add(od);
+                        }
+                    }
+               }
            }
                   
        }
-       return listOrderDetail;
+       return listOrderDetai2;
     }
 
     @Override

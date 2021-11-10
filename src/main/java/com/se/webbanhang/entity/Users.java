@@ -76,7 +76,8 @@ public class Users {
             @NotNull @NotBlank @Size(min = 9, max = 10)String phone, 
             @Size(max = 50) @Email String email, 
             @NotNull @NotBlank @Size(min = 6, max = 100) String encode,
-            @NotNull String address
+            @NotNull String address,
+            String avartar
     ) {
         this.name = name;
         this.username = username;
@@ -84,6 +85,7 @@ public class Users {
         this.email = email;
         this.password = encode;
         this.address = address;
+        this.avartar = avartar;
     }
     
     public int getId() {
