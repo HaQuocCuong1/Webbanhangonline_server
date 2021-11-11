@@ -21,4 +21,5 @@ public interface OrderDetailService {
     public List<Order_detail> getOrderDetailByOrderId(int orderId);
     public List<Order_detail> getOrderDetailByUserId(int userId);
     public boolean updateStatusOrderDetail(int orderDetailId, int type);
+    public List<Order_detail> getOrderDetailByStatus(int userId, int status);
 }

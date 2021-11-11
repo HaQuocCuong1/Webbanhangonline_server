@@ -106,4 +106,20 @@ public class OrderDetailServicesImpl implements OrderDetailService{
            return true;
        }
     }
+
+    @Override
+    public List<Order_detail> getOrderDetailByStatus(int userId, int status) {
+       List<Order_detail> listOrderDetai1 = getOrderDetailByUserId(userId);
+       List<Order_detail> listOrderDetai2 = new ArrayList<Order_detail>();
+       for(Order_detail od : listOrderDetai1)
+       {
+           if(od.getStatus() == status)
+           {
+               listOrderDetai2.add(od);
+           }else{
+               throw new RuntimeException("Did not find Orderdetail status " + status);
+           }
+       }
+       return listOrderDetai2;
+    }
 }

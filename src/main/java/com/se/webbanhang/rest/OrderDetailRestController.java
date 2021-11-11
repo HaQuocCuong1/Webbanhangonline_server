@@ -41,6 +41,11 @@ public class OrderDetailRestController {
     {
         return orderDetailService.getOrderDetailByUserId(userId);
     }
+    @GetMapping("/orderdetails/users/{userId}/status/{status}")
+    public List<Order_detail> getOrderDetailByStatus(@PathVariable int userId, @PathVariable int status)
+    {
+        return orderDetailService.getOrderDetailByStatus(userId, status);
+    }
     @PostMapping("/status/orderDetail/{orderDetailId}/type/{type}")
     public String updateFeatured(@PathVariable int orderDetailId, @PathVariable int type)
     {
