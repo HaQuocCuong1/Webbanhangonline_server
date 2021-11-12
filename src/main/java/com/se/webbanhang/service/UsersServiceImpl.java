@@ -8,6 +8,7 @@ package com.se.webbanhang.service;
 import com.se.webbanhang.repository.UsersRespository;
 import com.se.webbanhang.entity.Role_user;
 import com.se.webbanhang.entity.Users;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.service.RoleUserService;
 import com.se.webbanhang.service.UsersService;
 import java.util.List;
@@ -39,7 +40,7 @@ public class UsersServiceImpl implements UsersService{
         {
             theUsers = result.get();
         }else {
-            throw new RuntimeException("Did not find User id: "+id);
+            throw new NotFoundException("Did not find User id: "+id);
         }
         return theUsers;
     }

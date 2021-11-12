@@ -8,6 +8,7 @@ package com.se.webbanhang.service;
 import com.se.webbanhang.repository.OrderRespository;
 import com.se.webbanhang.entity.Orders;
 import com.se.webbanhang.entity.Users;
+import com.se.webbanhang.exception.NotFoundException;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,7 @@ public class OrderServiceImpl implements OrderService{
         {
             theOrders = result.get();
         }else {
-            throw new RuntimeException("Did not find Order id: "+id);
+            throw new NotFoundException("Did not find Order id: "+id);
         }
         return theOrders;
     }

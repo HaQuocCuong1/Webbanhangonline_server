@@ -7,6 +7,7 @@ package com.se.webbanhang.rest;
 
 import com.se.webbanhang.entity.Categories;
 import com.se.webbanhang.entity.Supplier;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.service.CategoriesService;
 import com.se.webbanhang.service.SupplierService;
 import java.util.List;
@@ -46,7 +47,7 @@ public class SupplierRestController {
         Supplier theSupplier = supplierService.findbyId(supplierId);
         if (theSupplier == null)
         {
-            throw new RuntimeException("Supplier not find by "+ supplierId);
+            throw new NotFoundException("Supplier not find by "+ supplierId);
         }
         return theSupplier;
     }
@@ -69,7 +70,7 @@ public class SupplierRestController {
         Supplier tempSupplier = supplierService.findbyId(supplierId);
         if (tempSupplier == null)
         {
-            throw new RuntimeException("Supplier id not found - " + supplierId);
+            throw new NotFoundException("Supplier id not found - " + supplierId);
         } else {
             supplierService.delete(supplierId);
         }

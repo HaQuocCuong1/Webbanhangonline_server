@@ -12,6 +12,8 @@ import com.se.webbanhang.dto.response.ReponseMessage;
 import com.se.webbanhang.entity.Role_user;
 import com.se.webbanhang.entity.Users;
 import com.se.webbanhang.entity.Utility;
+import com.se.webbanhang.exception.ApiRequestException;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.security.jwt.JwtProvider;
 import com.se.webbanhang.security.userprincal.UserPrinciple;
 import com.se.webbanhang.service.RoleUserService;
@@ -78,7 +80,7 @@ public class UsersRestController {
         Users theUsers = usersService.findbyId(userId);
         if (theUsers == null)
         {
-            throw new RuntimeException("Users not find by "+ userId);
+            throw new NotFoundException("Users not find by "+ userId);
         }
         return theUsers;
     }
@@ -88,7 +90,7 @@ public class UsersRestController {
         Role_user theRole = usersService.getRole(userId, roleId);
         if (theRole == null)
         {
-            throw new RuntimeException("Role not find by "+ roleId);
+            throw new NotFoundException("Role not find by "+ roleId);
         }
         return theRole;
     }
@@ -98,7 +100,7 @@ public class UsersRestController {
         List<Role_user> theRoles = usersService.getroles(userId);
         if (theRoles == null)
         {
-            throw new RuntimeException("Role not find by "+ userId);
+            throw new NotFoundException("Role not find by "+ userId);
         }
         return theRoles;
     }
@@ -107,11 +109,12 @@ public class UsersRestController {
     {
         if (usersService.existsByUsername(signUpForm.getUsername()))
         {
-            return new ResponseEntity<>(new ReponseMessage("Username tồn tại! Vui lòng thử lại!"), HttpStatus.OK); 
+            throw new ApiRequestException("Username exists! Please try again");
         }
         if (usersService.existsByEmail(signUpForm.getEmail()))
         {
-            return new ResponseEntity<>(new ReponseMessage("Email đã tồn tại! Vui lòng thử lại!"), HttpStatus.OK);
+            //return new ResponseEntity<>(new ReponseMessage("Email đã tồn tại! Vui lòng thử lại!"), HttpStatus.OK);
+            throw new ApiRequestException("Email exists! Please try again");
         }
         Users theUsers = new Users(signUpForm.getName(), signUpForm.getUsername(), signUpForm.getPhone(), signUpForm.getEmail(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getAddress(), AVARTAR_DEFAULT);
         theUsers.setId(0);
@@ -131,11 +134,12 @@ public class UsersRestController {
     {
         if (usersService.existsByUsername(signUpForm.getUsername()))
         {
-            return new ResponseEntity<>(new ReponseMessage("The username existed! Please try agin!"), HttpStatus.OK); 
+            throw new ApiRequestException("Username exists! Please try again");
         }
         if (usersService.existsByEmail(signUpForm.getEmail()))
         {
-            return new ResponseEntity<>(new ReponseMessage("The email existed! Please try agin!"), HttpStatus.OK);
+            throw new ApiRequestException("Email exists! Please try again");
+            //return new ResponseEntity<>(new ReponseMessage("The email existed! Please try agin!"), HttpStatus.OK);
         }
     
         Users theUsers = new Users(signUpForm.getName(), signUpForm.getUsername(), signUpForm.getPhone(), signUpForm.getEmail(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getAddress(), AVARTAR_DEFAULT);
@@ -177,7 +181,7 @@ public class UsersRestController {
         Users tempUsers = usersService.findbyId(userId);
         if (tempUsers == null)
         {
-            throw new RuntimeException("User id not found - " + userId);
+            throw new NotFoundException("User id not found - " + userId);
         } else {
             usersService.delete(userId);
         }

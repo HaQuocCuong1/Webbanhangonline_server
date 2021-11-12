@@ -12,6 +12,7 @@ import com.se.webbanhang.entity.Order_detail;
 import com.se.webbanhang.entity.Products;
 import com.se.webbanhang.entity.Supplier;
 import com.se.webbanhang.entity.Users;
+import com.se.webbanhang.exception.NotFoundException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class ProductServiceImpl implements ProductService{
         {
             theProducts = result.get();
         }else {
-            throw new RuntimeException("Did not find product id: "+productsId);
+            throw new NotFoundException("Did not find product id: "+productsId);
         }
         return theProducts;
         
@@ -108,7 +109,7 @@ public class ProductServiceImpl implements ProductService{
         {
             theProducts = result.get();
         }else {
-            throw new RuntimeException("Did not find product id: "+productId);
+            throw new NotFoundException("Did not find product id: "+productId);
         }
         return theProducts;
     }

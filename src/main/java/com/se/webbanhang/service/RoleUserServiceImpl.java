@@ -8,6 +8,7 @@ package com.se.webbanhang.service;
 import com.se.webbanhang.repository.RoleUserRespository;
 import com.se.webbanhang.entity.Role_user;
 import com.se.webbanhang.entity.Users;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.service.RoleUserService;
 import com.se.webbanhang.service.UsersService;
 import java.util.List;
@@ -48,7 +49,7 @@ public class RoleUserServiceImpl implements RoleUserService{
         {
             theRole_user = result.get();
         }else {
-            throw new RuntimeException("Did not find role id: "+id);
+            throw new NotFoundException("Did not find role id: "+id);
         }
         return theRole_user;
     }

@@ -7,6 +7,7 @@ package com.se.webbanhang.rest;
 
 import com.se.webbanhang.entity.Picture_product;
 import com.se.webbanhang.entity.Products;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.service.PictureProductService;
 import com.se.webbanhang.service.ProductService;
 import java.util.List;
@@ -60,7 +61,7 @@ public class PictureProductRestController {
         Picture_product tempPictureproduct = pictureProductService.findbyId(prProductId);
         if (tempPictureproduct == null)
         {
-            throw new RuntimeException("Pictoru Product id not found - " + prProductId);
+            throw new NotFoundException("Pictoru Product id not found - " + prProductId);
         } else {
            //roleUserService.delete(roleId);
            pictureProductService.delete(prProductId);

@@ -10,6 +10,7 @@ import com.se.webbanhang.entity.Order_detail;
 import com.se.webbanhang.entity.Orders;
 import com.se.webbanhang.entity.Products;
 import com.se.webbanhang.entity.Users;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.repository.OrderDetailRespository;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class OrderDetailServicesImpl implements OrderDetailService{
         {
             theOrderDetail = result.get();
         }else {
-            throw new RuntimeException("Did not find Orderdetail id: "+id);
+            throw new NotFoundException("Did not find Orderdetail id: "+id);
         }
         return theOrderDetail;
     }
@@ -117,7 +118,7 @@ public class OrderDetailServicesImpl implements OrderDetailService{
            {
                listOrderDetai2.add(od);
            }else{
-               throw new RuntimeException("Did not find Orderdetail status " + status);
+               throw new NotFoundException("Did not find Orderdetail status " + status);
            }
        }
        return listOrderDetai2;

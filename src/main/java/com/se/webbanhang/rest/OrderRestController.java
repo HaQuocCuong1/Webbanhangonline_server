@@ -11,6 +11,8 @@ import com.se.webbanhang.entity.Order_detail;
 import com.se.webbanhang.entity.Orders;
 import com.se.webbanhang.entity.Products;
 import com.se.webbanhang.entity.Users;
+import com.se.webbanhang.exception.ApiRequestException;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.service.OrderDetailService;
 import com.se.webbanhang.service.OrderService;
 import com.se.webbanhang.service.ProductService;
@@ -57,7 +59,7 @@ public class OrderRestController {
         {
             listOrder = theUsers.getListorders();
         }else{
-            throw new RuntimeException("user not found userId "+userId);
+            throw new NotFoundException("user not found userId "+userId);
         }
         return listOrder;
     }
@@ -67,7 +69,7 @@ public class OrderRestController {
         Orders theorder = orderService.findbyId(orderId);
         if (theorder == null)
         {
-            throw new RuntimeException("Order not find by "+ orderId);
+            throw new NotFoundException("Order not find by "+ orderId);
         }
         return theorder;
     }
@@ -144,7 +146,7 @@ public class OrderRestController {
             return theOrder;
         }catch(Exception e)
         {
-            throw new RuntimeException("Update order fail ", e);
+            throw new ApiRequestException("Update order fail ", e);
         }
     }
     @DeleteMapping("/orders/{orderId}")
@@ -153,7 +155,7 @@ public class OrderRestController {
         Orders tempOrders = orderService.findbyId(orderId);
         if (tempOrders == null)
         {
-            throw new RuntimeException("Categories id not found - " + orderId);
+            throw new NotFoundException("Categories id not found - " + orderId);
         } else {
             orderService.delete(orderId);
         }

@@ -6,6 +6,7 @@ package com.se.webbanhang.service;
 
 import com.se.webbanhang.entity.Store;
 import com.se.webbanhang.entity.Users;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.repository.StoreRespository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class StoreServiceImpl implements StoreService{
         {
             theStore = result.get();
         }else {
-            throw new RuntimeException("Did not find Store id: "+id);
+            throw new NotFoundException("Did not find Store id: "+id);
         }
         return theStore;
     }

@@ -7,6 +7,7 @@ package com.se.webbanhang.service;
 
 import com.se.webbanhang.repository.CategoriesRespository;
 import com.se.webbanhang.entity.Categories;
+import com.se.webbanhang.exception.NotFoundException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class CategoriesServicecImpl implements CategoriesService{
         {
             theCategories = result.get();
         }else {
-            throw new RuntimeException("Did not find Categories id: "+id);
+            throw new NotFoundException("Did not find Categories id: "+id);
         }
         return theCategories;
     }

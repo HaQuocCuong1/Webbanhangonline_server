@@ -6,6 +6,7 @@
 package com.se.webbanhang.service;
 
 import com.se.webbanhang.entity.Picture_product;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.repository.PictureProductRespository;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,7 @@ public class PictureProductServiceImpl implements PictureProductService{
         {
             thePicture_product = result.get();
         }else {
-            throw new RuntimeException("Did not find PictureProduct id: "+id);
+            throw new NotFoundException("Did not find PictureProduct id: "+id);
         }
         return thePicture_product;
     }

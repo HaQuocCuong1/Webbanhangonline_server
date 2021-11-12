@@ -7,6 +7,7 @@ package com.se.webbanhang.rest;
 import com.se.webbanhang.dto.request.StoreDTO;
 import com.se.webbanhang.entity.Store;
 import com.se.webbanhang.entity.Users;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.service.StoreService;
 import com.se.webbanhang.service.UsersService;
 import java.sql.Date;
@@ -59,10 +60,10 @@ public class StoreRestController {
                 }
             }
             else{
-                throw new RuntimeException("User id not found - " + userId);
+                throw new NotFoundException("User id not found - " + userId);
             }
         }
         storeService.save(theStore);
-        return "Tạo shop thành công";
+        return "Create shop success";
     }
 }

@@ -8,6 +8,7 @@ package com.se.webbanhang.service;
 import com.se.webbanhang.repository.SupplierRespository;
 import com.se.webbanhang.entity.Categories;
 import com.se.webbanhang.entity.Supplier;
+import com.se.webbanhang.exception.NotFoundException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class SupplierServiceImpl implements SupplierService{
         {
             theSupplier = result.get();
         }else {
-            throw new RuntimeException("Did not find Supplier id: "+id);
+            throw new NotFoundException("Did not find Supplier id: "+id);
         }
         return theSupplier;
     }

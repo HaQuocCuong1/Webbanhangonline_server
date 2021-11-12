@@ -7,6 +7,7 @@ package com.se.webbanhang.rest;
 
 import com.se.webbanhang.entity.Categories;
 import com.se.webbanhang.entity.Products;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.service.CategoriesService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,7 @@ public class CategoriesRestController {
         Categories thecate = categoriesService.findbyId(categoriesId);
         if (thecate == null)
         {
-            throw new RuntimeException("Categories not find by "+ categoriesId);
+            throw new NotFoundException("Categories not find by "+ categoriesId);
         }
         return thecate;
     }
@@ -56,7 +57,7 @@ public class CategoriesRestController {
         List<Products> products = null;
         if (thecate == null)
         {
-            throw new RuntimeException("Categories not find by "+ categoriesId);
+            throw new NotFoundException("Categories not find by "+ categoriesId);
         }else {
             products = thecate.getProducts();
         }
@@ -83,7 +84,7 @@ public class CategoriesRestController {
         Categories tempCategories = categoriesService.findbyId(categoriesId);
         if (tempCategories == null)
         {
-            throw new RuntimeException("Categories id not found - " + categoriesId);
+            throw new NotFoundException("Categories id not found - " + categoriesId);
         } else {
             categoriesService.delete(categoriesId);
         }

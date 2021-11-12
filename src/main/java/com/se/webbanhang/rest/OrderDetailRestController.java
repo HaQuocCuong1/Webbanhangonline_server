@@ -51,8 +51,8 @@ public class OrderDetailRestController {
     {
         boolean checkupdate = orderDetailService.updateStatusOrderDetail(orderDetailId, type);
         if(checkupdate == true)
-            return "Xát nhận đơn hàng thành công!";
+            return "Confirm order success!";
         else
-            return "Xát nhận đơn hàng thất bại!";
+            return "Confirm order fail!";
     }
 }

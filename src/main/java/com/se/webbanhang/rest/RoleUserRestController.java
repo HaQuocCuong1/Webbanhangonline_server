@@ -8,6 +8,7 @@ package com.se.webbanhang.rest;
 import com.se.webbanhang.repository.RoleUserRespository;
 import com.se.webbanhang.entity.Role_user;
 import com.se.webbanhang.entity.Users;
+import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.service.RoleUserService;
 import com.se.webbanhang.service.UsersService;
 import java.util.List;
@@ -63,7 +64,7 @@ public class RoleUserRestController {
         Role_user theRoleuser = roleUserService.findbyId(roleId);
         if (theRoleuser == null)
         {
-            throw new RuntimeException("Role not find by "+ roleId);
+            throw new NotFoundException("Role not find by "+ roleId);
         }
         return theRoleuser;
     }
@@ -73,7 +74,7 @@ public class RoleUserRestController {
         Role_user tempRoleuser = roleUserService.findbyId(roleId);
         if (tempRoleuser == null)
         {
-            throw new RuntimeException("Role id not found - " + roleId);
+            throw new NotFoundException("Role id not found - " + roleId);
         } else {
            //roleUserService.delete(roleId);
            roleUserRespository.deleteById(roleId);
