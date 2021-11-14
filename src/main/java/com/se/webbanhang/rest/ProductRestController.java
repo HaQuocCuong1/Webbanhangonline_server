@@ -228,6 +228,11 @@ public class ProductRestController {
         List<Products> listproduct = productService.getlistProductsbyUser(userId);
         return listproduct; 
     }
+    @GetMapping("/products/status/{status}")
+    public List<Products> listproductForStatus(@PathVariable int status) {
+        List<Products> listproduct = productService.getlistProductsbyStatus(status);
+        return listproduct; 
+    }
     @PostMapping("/status/products/{productId}/type/{type}")
     public String updateStatusProduct(@PathVariable int productId, @PathVariable int type)
     {

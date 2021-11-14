@@ -13,6 +13,7 @@ import com.se.webbanhang.entity.Products;
 import com.se.webbanhang.entity.Supplier;
 import com.se.webbanhang.entity.Users;
 import com.se.webbanhang.exception.NotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,5 +158,20 @@ public class ProductServiceImpl implements ProductService{
            productRespository.updateFeaturedProduct(theProduct.getId(), type);
            return true;
        }
+    }
+
+    @Override
+    public List<Products> getlistProductsbyStatus(int status) {
+        List<Products> listProducts = getlistProducts();
+        List<Products> listProduct = new ArrayList<>();
+        for(Products p : listProducts)
+        {
+            if(p.getStatus() == status)
+            {
+                listProduct.add(p);
+            }else
+                throw new NotFoundException("Not found product need confirm");
+        }
+        return listProduct;
     }
 }
