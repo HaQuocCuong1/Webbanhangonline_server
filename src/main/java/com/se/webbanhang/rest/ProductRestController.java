@@ -129,6 +129,7 @@ public class ProductRestController {
                     Supplier theSupplier = supplierService.findbyId(updatePtodDTO.getSuppliersId());
                     if (theSupplier != null)
                     {
+                        Products products2 = productService.findById(updatePtodDTO.getId());
                         theProducts1 = new Products();
                         double competivePrice = 0;
                         double percen = (100-updatePtodDTO.getPromotion());
@@ -148,6 +149,7 @@ public class ProductRestController {
                         theProducts1.setDate_sale(updatePtodDTO.getDate_sale());
                         theProducts1.setQuantity(updatePtodDTO.getQuantity());
                         theProducts1.setPromotion(updatePtodDTO.getPromotion());
+                        theProducts1.setStatus(products2.getStatus());
 
                         theProducts1.setCategories(theCategories);
                         theProducts1.setSupplier(theSupplier);
