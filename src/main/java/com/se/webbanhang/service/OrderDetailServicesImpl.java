@@ -117,8 +117,6 @@ public class OrderDetailServicesImpl implements OrderDetailService{
            if(od.getStatus() == status)
            {
                listOrderDetai2.add(od);
-           }else{
-               throw new NotFoundException("Did not find Orderdetail status " + status);
            }
        }
        return listOrderDetai2;

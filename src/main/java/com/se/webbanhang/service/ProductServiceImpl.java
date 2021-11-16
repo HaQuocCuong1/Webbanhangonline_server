@@ -174,4 +174,10 @@ public class ProductServiceImpl implements ProductService{
         }
         return listProduct;
     }
+
+    @Override
+    public Integer getProductInventory() {
+        int count = 0;
+        return count;
+    }
 }

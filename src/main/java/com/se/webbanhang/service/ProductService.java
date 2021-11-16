@@ -27,4 +27,5 @@ public interface ProductService {
     public boolean updateStatusProduct(int id, int type);
     public boolean updateFeaturedProduct(int id, int type);
     public List<Products> getlistProductsbyStatus(int status);
+    public Integer getProductInventory();
 }

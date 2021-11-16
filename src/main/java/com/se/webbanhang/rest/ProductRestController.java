@@ -150,6 +150,7 @@ public class ProductRestController {
                         theProducts1.setQuantity(updatePtodDTO.getQuantity());
                         theProducts1.setPromotion(updatePtodDTO.getPromotion());
                         theProducts1.setStatus(products2.getStatus());
+                        theProducts1.setFeatured(products2.getFeatured());
 
                         theProducts1.setCategories(theCategories);
                         theProducts1.setSupplier(theSupplier);
@@ -219,9 +220,9 @@ public class ProductRestController {
         Categories categories = categoriesService.findbyId(categoriesId);
         Products theproduct = categories.getProduct(productId);
         if (theproduct == null)
-            {
-                throw new NotFoundException("products not found - "+ productId);
-            }
+        {
+            throw new NotFoundException("products not found - "+ productId);
+        }
         return theproduct; 
     }
     @GetMapping("/products/users/{userId}")
@@ -235,6 +236,13 @@ public class ProductRestController {
         List<Products> listproduct = productService.getlistProductsbyStatus(status);
         return listproduct; 
     }
+//    @GetMapping("/products/inventory")
+//    public Integer countProduct() {
+//        // get persons from the service
+//        int productInventory = 0;
+//        productInventory = productService.getlistProductsbyCategori(categorieId);
+//        return listproduct; 
+//    }
     @PostMapping("/status/products/{productId}/type/{type}")
     public String updateStatusProduct(@PathVariable int productId, @PathVariable int type)
     {
@@ -253,4 +261,5 @@ public class ProductRestController {
         else
             return "Update featured products fail!";
     }
+    
 }
