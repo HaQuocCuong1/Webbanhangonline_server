@@ -169,8 +169,7 @@ public class ProductServiceImpl implements ProductService{
             if(p.getStatus() == status)
             {
                 listProduct.add(p);
-            }else
-                throw new NotFoundException("Not found product need confirm");
+            }
         }
         return listProduct;
     }
