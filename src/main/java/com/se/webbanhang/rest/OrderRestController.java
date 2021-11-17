@@ -90,6 +90,7 @@ public class OrderRestController {
             int count = 0;
             int quantityOrderDetail = 0;
             int quantityOrder = 0;
+            int updateQuantityProduct = 0;
             for(OrderDetailDTO od : listOD)
             {
                 Order_detail orderdtail = new Order_detail();
@@ -104,32 +105,55 @@ public class OrderRestController {
                 orderdtail.setProducts(theProducts1);
                 listDetail.add(orderdtail);
                 count = od.getQuantity();
-                if (quantityOrderDetail == 0)
+                if (updateQuantityProduct == 0)
                 {
-                    for (Order_detail ods : theProducts1.getListOrderDetail())
-                    {
-                    
-                        if (ods != null)
+                    updateQuantityProduct = theProducts1.getQuantity() - od.getQuantity();
+                }else{
+                    updateQuantityProduct = 0;
+                    updateQuantityProduct = theProducts1.getQuantity() - od.getQuantity();
+                }
+                int productId = theProducts1.getId();
+                if(updateQuantityProduct >= 0)
+                {
+                    boolean check = productService.updateQuantityProduct(updateQuantityProduct, productId);
+                    if (check == true) {
+                        if (quantityOrderDetail == 0)
                         {
-                            int quantity = ods.getQuantity();
-                            quantityOrderDetail = quantityOrderDetail+ quantity;
+                            for (Order_detail ods : theProducts1.getListOrderDetail())
+                            {
+
+                                if (ods != null)
+                                {
+                                    int quantity = ods.getQuantity();
+                                    quantityOrderDetail = quantityOrderDetail+ quantity;
+                                }
+                            }
                         }
+                        if (quantityOrder == 0)
+                        {
+                            quantityOrder = count + quantityOrderDetail;
+                            
+                        }else {
+                            quantityOrder = quantityOrder + count;
+                        }
+                        if(quantityOrder != 0)
+                        {
+                            productService.updateBannhan(od.getProductId(), quantityOrder);
+                        }
+                    }else{
+                        throw new NotFoundException("Not found ProductId: "+productId);
                     }
+                }else{
+                    throw new ApiRequestException("This product is out of stock");
                 }
-                if (quantityOrder == 0)
-                {
-                    quantityOrder = count + quantityOrderDetail;
-                }else {
-                    quantityOrder = quantityOrder + count;
-                }
-                productService.updateBannhan(od.getProductId(), quantityOrder);
+                
             }
             theOrder.setListOrderDetail(listDetail);
             orderService.save(theOrder);
             return "Payment success";
         }catch(Exception e)
         {
-            throw new RuntimeException("Payment Fail ",e);
+            throw new ApiRequestException("Payment Fail ",e);
         }
     }
     @PutMapping("/orders")

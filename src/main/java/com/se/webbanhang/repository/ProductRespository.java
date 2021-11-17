@@ -28,4 +28,7 @@ public interface ProductRespository extends JpaRepository<Products, Integer>{
     @Query("UPDATE Products p SET p.featured = ?2 WHERE p.id = ?1")
     @Modifying
     public void updateFeaturedProduct(int id, int type);
+    @Query("UPDATE Products p SET p.quantity = ?2 WHERE p.id = ?1")
+    @Modifying
+    public void updateQuantityProduct(int id, int value);
 }

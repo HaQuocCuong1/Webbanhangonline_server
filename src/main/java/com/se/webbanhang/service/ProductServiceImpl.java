@@ -175,8 +175,73 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Integer getProductInventory() {
-        int count = 0;
-        return count;
+    public Integer getProductInventory(int userId) {
+        Users theUsers = usersService.findbyId(userId);
+        List<Products> productses = null;
+        int totalQuantity = 0;
+        if(theUsers != null)
+        {
+            productses = theUsers.getProducts();
+            for(Products p : productses)
+            {
+                if(p != null)
+                {
+                    int quantity = p.getQuantity();
+                    totalQuantity += quantity;
+                }
+            }
+        }
+        return totalQuantity;
+    }
+
+    @Override
+    public boolean updateQuantityProduct(int updateQuantityProduct, int productId) {
+        Products theProduct = findById(productId);
+        if(theProduct == null)
+           return false;
+        else
+        {
+            productRespository.updateQuantityProduct(theProduct.getId(), updateQuantityProduct);
+            return true;
+        }
+    }
+
+    @Override
+    public Integer getTotalProductsSold(int userId) {
+        Users theUsers = usersService.findbyId(userId);
+        List<Products> productses = null;
+        int totalProductSold = 0;
+        if(theUsers != null)
+        {
+            productses = theUsers.getProducts();
+            for(Products p : productses)
+            {
+                if(p != null)
+                {
+                    int sold = p.getBan_nhanh();
+                    totalProductSold += sold;
+                }
+            }
+        }
+        return totalProductSold;
+    }
+
+    @Override
+    public Integer getTotalProductscConfirm(int userId) {
+        Users theUsers = usersService.findbyId(userId);
+        List<Products> productses = null;
+        int totalProductConfirm = 0;
+        if(theUsers != null)
+        {
+            productses = theUsers.getProducts();
+            for(Products p : productses)
+            {
+                if(p.getStatus() == 0)
+                {
+                    totalProductConfirm++;
+                }
+            }
+        }
+        return totalProductConfirm;
     }
 }

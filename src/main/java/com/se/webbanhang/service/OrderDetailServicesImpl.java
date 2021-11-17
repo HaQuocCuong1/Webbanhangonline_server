@@ -121,4 +121,18 @@ public class OrderDetailServicesImpl implements OrderDetailService{
        }
        return listOrderDetai2;
     }
+
+    @Override
+    public Integer getorderDetailConfirm(int userId, int status) {
+        List<Order_detail> listOrderDetai1 = getOrderDetailByUserId(userId);
+        int count = 0;
+        for(Order_detail od : listOrderDetai1)
+        {
+            if(od.getStatus() == status)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
 }

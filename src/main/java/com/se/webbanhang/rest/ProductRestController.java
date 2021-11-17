@@ -151,6 +151,7 @@ public class ProductRestController {
                         theProducts1.setPromotion(updatePtodDTO.getPromotion());
                         theProducts1.setStatus(products2.getStatus());
                         theProducts1.setFeatured(products2.getFeatured());
+                        theProducts1.setBan_nhanh(products2.getBan_nhanh());
 
                         theProducts1.setCategories(theCategories);
                         theProducts1.setSupplier(theSupplier);
@@ -236,13 +237,21 @@ public class ProductRestController {
         List<Products> listproduct = productService.getlistProductsbyStatus(status);
         return listproduct; 
     }
-//    @GetMapping("/products/inventory")
-//    public Integer countProduct() {
-//        // get persons from the service
-//        int productInventory = 0;
-//        productInventory = productService.getlistProductsbyCategori(categorieId);
-//        return listproduct; 
-//    }
+    @GetMapping("/products/inventory/users/{userId}")
+    public Integer countProduct(@PathVariable int userId) {
+        // get persons from the service
+        return productService.getProductInventory(userId); 
+    }
+    @GetMapping("/products/totalproduct/users/{userId}")
+    public Integer totalProductsSold(@PathVariable int userId) {
+        // get persons from the service
+        return productService.getTotalProductsSold(userId);
+    }
+    @GetMapping("/products/totalconfirm/users/{userId}")
+    public Integer totalProductsConfirm(@PathVariable int userId) {
+        // get persons from the service
+        return productService.getTotalProductscConfirm(userId);
+    }
     @PostMapping("/status/products/{productId}/type/{type}")
     public String updateStatusProduct(@PathVariable int productId, @PathVariable int type)
     {
