@@ -144,7 +144,7 @@ public class OrderRestController {
                         throw new NotFoundException("Not found ProductId: "+productId);
                     }
                 }else{
-                    throw new ApiRequestException("This product is out of stock");
+                    throw new ApiRequestException("The product is sold out");
                 }
                 
             }
