@@ -205,6 +205,12 @@ public class ProductRestController {
         List<Products> listproduct = productService.getlistProductsbyCategori(categorieId);
         return listproduct; 
     }
+    @GetMapping("/products/supplier/{supplierId}")
+    public List<Products> listproductForSupplier(@PathVariable int supplierId) {
+        // get persons from the service
+        List<Products> listproduct = productService.getlistProductsbySupplier(supplierId);
+        return listproduct; 
+    }
     @GetMapping("/products/{productId}")
     public Products getproduct(@PathVariable int productId) throws NotFoundException {
         // get persons from the service

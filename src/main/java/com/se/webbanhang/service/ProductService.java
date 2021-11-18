@@ -30,5 +30,6 @@ public interface ProductService {
     public Integer getProductInventory(int userId);
     public boolean updateQuantityProduct(int updateQuantityProduct, int productId);
     public Integer getTotalProductsSold(int userId);
-     public Integer getTotalProductscConfirm(int userId);
+    public Integer getTotalProductscConfirm(int userId);
+    public List<Products> getlistProductsbySupplier(int supplierId);
 }

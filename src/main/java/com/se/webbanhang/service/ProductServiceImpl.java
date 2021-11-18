@@ -244,4 +244,15 @@ public class ProductServiceImpl implements ProductService{
         }
         return totalProductConfirm;
     }
+
+    @Override
+    public List<Products> getlistProductsbySupplier(int supplierId) {
+        Supplier theSupplier = supplierService.findbyId(supplierId);
+        List<Products> productses = new ArrayList<>();
+        if(theSupplier != null)
+        {
+            productses = theSupplier.getProducts();
+        }
+        return productses;
+    }
 }

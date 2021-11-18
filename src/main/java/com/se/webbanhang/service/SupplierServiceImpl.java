@@ -35,8 +35,6 @@ public class SupplierServiceImpl implements SupplierService{
         if (result.isPresent())
         {
             theSupplier = result.get();
-        }else {
-            throw new NotFoundException("Did not find Supplier id: "+id);
         }
         return theSupplier;
     }
