@@ -32,5 +32,7 @@ public interface ProductService {
     public Integer getTotalProductsSold(int userId);
     public Integer getTotalProductscConfirm(int userId);
     public List<Products> getlistProductsbySupplier(int supplierId);
-    public List<Products> getlistProductsbyPriceIncrease();
+    public List<Products> getlistProductsbyPriceIncrease(int categoriesId);
+    public List<Products> getlistProductsbyPriceReduced(int categoriesId);
+    public List<Products> getlistProductsbySellfast(int categoriesId);
 }

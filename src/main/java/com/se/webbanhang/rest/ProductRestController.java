@@ -258,9 +258,19 @@ public class ProductRestController {
         // get persons from the service
         return productService.getTotalProductscConfirm(userId);
     }
-    @GetMapping("/products/increase")
-    public List<Products> listproductForPriceIncrease() {
-        List<Products> listproduct = productService.getlistProductsbyPriceIncrease();
+    @GetMapping("/products/increase/categories/{categoriesId}")
+    public List<Products> listproductForPriceIncrease(@PathVariable int categoriesId) {
+        List<Products> listproduct = productService.getlistProductsbyPriceIncrease(categoriesId);
+        return listproduct; 
+    }
+    @GetMapping("/products/reduced/categories/{categoriesId}")
+    public List<Products> listproductForPriceReduced(@PathVariable int categoriesId) {
+        List<Products> listproduct = productService.getlistProductsbyPriceReduced(categoriesId);
+        return listproduct; 
+    }
+    @GetMapping("/products/sellfast/categories/{categoriesId}")
+    public List<Products> listproductForSellfast(@PathVariable int categoriesId) {
+        List<Products> listproduct = productService.getlistProductsbySellfast(categoriesId);
         return listproduct; 
     }
     @PostMapping("/status/products/{productId}/type/{type}")

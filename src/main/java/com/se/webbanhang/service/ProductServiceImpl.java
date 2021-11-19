@@ -259,12 +259,39 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Products> getlistProductsbyPriceIncrease() {
-        List<Products> products = getlistProducts();
+    public List<Products> getlistProductsbyPriceIncrease(int categoriesId) {
+        Categories theCategories = categoriesService.findbyId(categoriesId);
+        List<Products> products = theCategories.getProducts();
         Collections.sort(products, new Comparator<Products>() {
             @Override
             public int compare(Products o1, Products o2) {
                 return (int) (o1.getPrice() - o2.getPrice());
+            }
+        });
+        return products;
+    }
+
+    @Override
+    public List<Products> getlistProductsbyPriceReduced(int categoriesId) {
+        Categories theCategories = categoriesService.findbyId(categoriesId);
+        List<Products> products = theCategories.getProducts();
+        Collections.sort(products, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o2.getPrice() - o1.getPrice());
+            }
+        });
+        return products;
+    }
+
+    @Override
+    public List<Products> getlistProductsbySellfast(int categoriesId) {
+        Categories theCategories = categoriesService.findbyId(categoriesId);
+        List<Products> products = theCategories.getProducts();
+        Collections.sort(products, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o2.getBan_nhanh()- o1.getBan_nhanh());
             }
         });
         return products;
