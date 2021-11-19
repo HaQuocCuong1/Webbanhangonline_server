@@ -211,6 +211,7 @@ public class ProductRestController {
         List<Products> listproduct = productService.getlistProductsbySupplier(supplierId);
         return listproduct; 
     }
+    
     @GetMapping("/products/{productId}")
     public Products getproduct(@PathVariable int productId) throws NotFoundException {
         // get persons from the service
@@ -263,14 +264,29 @@ public class ProductRestController {
         List<Products> listproduct = productService.getlistProductsbyPriceIncrease(categoriesId);
         return listproduct; 
     }
+    @GetMapping("/products/increase/supplier/{supplierId}")
+    public List<Products> listproductForPriceIncreaseSupplier(@PathVariable int supplierId) {
+        List<Products> listproduct = productService.getlistProductsbyPriceIncreaseSupplier(supplierId);
+        return listproduct; 
+    }
     @GetMapping("/products/reduced/categories/{categoriesId}")
     public List<Products> listproductForPriceReduced(@PathVariable int categoriesId) {
         List<Products> listproduct = productService.getlistProductsbyPriceReduced(categoriesId);
         return listproduct; 
     }
+    @GetMapping("/products/reduced/supplier/{supplierId}")
+    public List<Products> listproductForPriceReducedSupplier(@PathVariable int supplierId) {
+        List<Products> listproduct = productService.getlistProductsbyPriceReducedSupplier(supplierId);
+        return listproduct; 
+    }
     @GetMapping("/products/sellfast/categories/{categoriesId}")
     public List<Products> listproductForSellfast(@PathVariable int categoriesId) {
         List<Products> listproduct = productService.getlistProductsbySellfast(categoriesId);
+        return listproduct; 
+    }
+    @GetMapping("/products/sellfast/supplier/{supplierId}")
+    public List<Products> listproductForSellfastSupplier(@PathVariable int supplierId) {
+        List<Products> listproduct = productService.getlistProductsbySellfastSupplier(supplierId);
         return listproduct; 
     }
     @PostMapping("/status/products/{productId}/type/{type}")

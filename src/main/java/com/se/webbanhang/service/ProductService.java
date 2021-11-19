@@ -35,4 +35,7 @@ public interface ProductService {
     public List<Products> getlistProductsbyPriceIncrease(int categoriesId);
     public List<Products> getlistProductsbyPriceReduced(int categoriesId);
     public List<Products> getlistProductsbySellfast(int categoriesId);
+    public List<Products> getlistProductsbyPriceIncreaseSupplier(int supplierId);
+    public List<Products> getlistProductsbyPriceReducedSupplier(int supplierId);
+    public List<Products> getlistProductsbySellfastSupplier(int supplierId);
 }
