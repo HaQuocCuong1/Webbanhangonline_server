@@ -14,6 +14,8 @@ import com.se.webbanhang.entity.Supplier;
 import com.se.webbanhang.entity.Users;
 import com.se.webbanhang.exception.NotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -255,4 +257,17 @@ public class ProductServiceImpl implements ProductService{
         }
         return productses;
     }
+
+    @Override
+    public List<Products> getlistProductsbyPriceIncrease() {
+        List<Products> products = getlistProducts();
+        Collections.sort(products, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o1.getPrice() - o2.getPrice());
+            }
+        });
+        return products;
+    }
+    
 }

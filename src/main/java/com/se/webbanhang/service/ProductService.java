@@ -32,4 +32,5 @@ public interface ProductService {
     public Integer getTotalProductsSold(int userId);
     public Integer getTotalProductscConfirm(int userId);
     public List<Products> getlistProductsbySupplier(int supplierId);
+    public List<Products> getlistProductsbyPriceIncrease();
 }

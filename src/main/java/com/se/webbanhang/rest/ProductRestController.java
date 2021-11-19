@@ -258,6 +258,11 @@ public class ProductRestController {
         // get persons from the service
         return productService.getTotalProductscConfirm(userId);
     }
+    @GetMapping("/products/increase")
+    public List<Products> listproductForPriceIncrease() {
+        List<Products> listproduct = productService.getlistProductsbyPriceIncrease();
+        return listproduct; 
+    }
     @PostMapping("/status/products/{productId}/type/{type}")
     public String updateStatusProduct(@PathVariable int productId, @PathVariable int type)
     {
