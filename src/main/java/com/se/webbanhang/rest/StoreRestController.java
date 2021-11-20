@@ -11,6 +11,7 @@ import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.service.StoreService;
 import com.se.webbanhang.service.UsersService;
 import java.sql.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,11 @@ public class StoreRestController {
     @Autowired
     private StoreService storeService;
     
+    @GetMapping("/stores")
+    public List<Store> findAll()
+    {
+        return storeService.findAll();
+    }
     @GetMapping("/store/user/{userId}")
     public Store findStoreByUser(@PathVariable int userId)
     {

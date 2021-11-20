@@ -10,6 +10,7 @@ import com.se.webbanhang.repository.ProductRespository;
 import com.se.webbanhang.entity.Categories;
 import com.se.webbanhang.entity.Order_detail;
 import com.se.webbanhang.entity.Products;
+import com.se.webbanhang.entity.Store;
 import com.se.webbanhang.entity.Supplier;
 import com.se.webbanhang.entity.Users;
 import com.se.webbanhang.exception.NotFoundException;
@@ -35,6 +36,8 @@ public class ProductServiceImpl implements ProductService{
     private SupplierService supplierService;
     @Autowired
     private UsersService usersService;
+    @Autowired
+    private StoreService storeService;
     @Override
     public Products getProduct(int productsId) {
         Optional<Products> result = productRespository.findById(productsId);
@@ -370,6 +373,19 @@ public class ProductServiceImpl implements ProductService{
             }
         });
         return products;
+    }
+
+    @Override
+    public List<Products> getListproductBystoreId(int storeId) {
+        Store store = storeService.findbyId(storeId);
+        Users theUsers = store.getUsers();
+        List<Products> productses = new ArrayList<>();
+        if(theUsers != null)
+        {
+            productses = theUsers.getProducts();
+        }
+        
+        return productses;
     }
     
 }

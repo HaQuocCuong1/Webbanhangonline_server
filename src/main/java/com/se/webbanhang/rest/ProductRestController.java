@@ -304,6 +304,11 @@ public class ProductRestController {
         List<Products> listproduct = productService.getlistProductsbySellfastSupplier(supplierId);
         return listproduct; 
     }
+    @GetMapping("/products/store/{storeId}")
+    public List<Products> listproductBystoreId(@PathVariable int storeId) {
+        List<Products> listproduct = productService.getListproductBystoreId(storeId);
+        return listproduct; 
+    }
     @PostMapping("/status/products/{productId}/type/{type}")
     public String updateStatusProduct(@PathVariable int productId, @PathVariable int type)
     {

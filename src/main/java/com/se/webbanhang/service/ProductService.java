@@ -41,4 +41,5 @@ public interface ProductService {
     public List<Products> getlistProductbyPriceIncrease();
     public List<Products> getlistProductbyPriceReduced();
     public List<Products> getlistProductbySellfast();
+    public List<Products> getListproductBystoreId(int storeId);
 }

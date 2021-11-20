@@ -8,6 +8,7 @@ import com.se.webbanhang.entity.Store;
 import com.se.webbanhang.entity.Users;
 import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.repository.StoreRespository;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,12 @@ public class StoreServiceImpl implements StoreService{
     private UsersService usersService;
     @Autowired
     private StoreRespository storeRespository;
+    
+    
+    @Override
+    public List<Store> findAll() {
+        return storeRespository.findAll();
+    }
     
     @Override
     public Store findStoreByUser(int userId) {
