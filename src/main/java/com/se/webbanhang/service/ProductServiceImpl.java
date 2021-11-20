@@ -335,5 +335,41 @@ public class ProductServiceImpl implements ProductService{
         });
         return products;
     }
+
+    @Override
+    public List<Products> getlistProductbyPriceIncrease() {
+        List<Products> products = getlistProducts();
+        Collections.sort(products, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o1.getPrice() - o2.getPrice());
+            }
+        });
+        return products;
+    }
+
+    @Override
+    public List<Products> getlistProductbyPriceReduced() {
+        List<Products> products = getlistProducts();
+        Collections.sort(products, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o2.getPrice() - o1.getPrice());
+            }
+        });
+        return products;
+    }
+
+    @Override
+    public List<Products> getlistProductbySellfast() {
+        List<Products> products = getlistProducts();
+        Collections.sort(products, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o2.getBan_nhanh()- o1.getBan_nhanh());
+            }
+        });
+        return products;
+    }
     
 }
