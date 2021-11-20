@@ -387,5 +387,57 @@ public class ProductServiceImpl implements ProductService{
         
         return productses;
     }
+
+    @Override
+    public List<Products> getlistProductsbyPriceIncreaseStore(int storeId) {
+        Store store = storeService.findbyId(storeId);
+        Users theUsers = store.getUsers();
+        List<Products> products = theUsers.getProducts();
+        Collections.sort(products, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o1.getPrice() - o2.getPrice());
+            }
+        });
+        return products;
+    }
+
+    @Override
+    public List<Products> getlistProductsbyPriceReducedStore(int storeId) {
+        Store store = storeService.findbyId(storeId);
+        Users theUsers = store.getUsers();
+        List<Products> products = theUsers.getProducts();
+        Collections.sort(products, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o2.getPrice() - o1.getPrice());
+            }
+        });
+        return products;
+    }
+
+    @Override
+    public List<Products> getlistProductsbySellfastStore(int storeId) {
+        Store store = storeService.findbyId(storeId);
+        Users theUsers = store.getUsers();
+        List<Products> products = theUsers.getProducts();
+        Collections.sort(products, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o2.getBan_nhanh()- o1.getBan_nhanh());
+            }
+        });
+        return products;
+    }
+
+    @Override
+    public List<Products> getlistProductsbySearchText(String searchText) {
+        List<Products> productses = null;
+        if(searchText != null)
+            productses = productRespository.findAllProduct(searchText);
+        else
+            productses = productRespository.findAll();
+        return productses;
+    }
     
 }

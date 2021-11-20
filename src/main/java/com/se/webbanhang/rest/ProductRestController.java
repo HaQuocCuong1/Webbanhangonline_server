@@ -7,6 +7,7 @@ package com.se.webbanhang.rest;
 
 import com.se.webbanhang.dto.request.PictureProductDTO;
 import com.se.webbanhang.dto.request.ProductDTO;
+import com.se.webbanhang.dto.request.SearchProductDTO;
 import com.se.webbanhang.dto.request.UpdateProductDTO;
 import com.se.webbanhang.repository.ProductRespository;
 import com.se.webbanhang.entity.Categories;
@@ -24,6 +25,7 @@ import java.sql.Date;
 import java.util.List;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -308,6 +310,26 @@ public class ProductRestController {
     public List<Products> listproductBystoreId(@PathVariable int storeId) {
         List<Products> listproduct = productService.getListproductBystoreId(storeId);
         return listproduct; 
+    }
+    @GetMapping("/products/increase/store/{storeId}")
+    public List<Products> listproductForPriceIncreaseByStore(@PathVariable int storeId) {
+        List<Products> listproduct = productService.getlistProductsbyPriceIncreaseStore(storeId);
+        return listproduct; 
+    }
+    @GetMapping("/products/reduced/store/{storeId}")
+    public List<Products> listproductForPriceReducedByStore(@PathVariable int storeId) {
+        List<Products> listproduct = productService.getlistProductsbyPriceReducedStore(storeId);
+        return listproduct; 
+    }
+    @GetMapping("/products/sellfast/store/{storeId}")
+    public List<Products> listproductForSellfastStore(@PathVariable int storeId) {
+        List<Products> listproduct = productService.getlistProductsbySellfastStore(storeId);
+        return listproduct; 
+    }
+    @PostMapping("/products/searchtext")
+    public List<Products> searcehText(@RequestBody SearchProductDTO searchtext)
+    {
+        return productService.getlistProductsbySearchText(searchtext.getSearchtext());
     }
     @PostMapping("/status/products/{productId}/type/{type}")
     public String updateStatusProduct(@PathVariable int productId, @PathVariable int type)
