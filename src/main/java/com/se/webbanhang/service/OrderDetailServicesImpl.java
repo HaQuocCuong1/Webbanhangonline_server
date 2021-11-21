@@ -10,6 +10,7 @@ import com.se.webbanhang.entity.Order_detail;
 import com.se.webbanhang.entity.Orders;
 import com.se.webbanhang.entity.Products;
 import com.se.webbanhang.entity.Users;
+import com.se.webbanhang.exception.ApiRequestException;
 import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.repository.OrderDetailRespository;
 import java.util.ArrayList;
@@ -56,7 +57,11 @@ public class OrderDetailServicesImpl implements OrderDetailService{
 
     @Override
     public void delete(int id) {
-        orderDetailRespository.deleteById(id);
+        Order_detail od = findbyId(id);
+        if(od.getStatus() == 0)
+            orderDetailRespository.deleteById(id);
+        else
+            throw new ApiRequestException("This product cannot be deleted due to processing");
     }
 
     @Override

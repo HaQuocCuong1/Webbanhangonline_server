@@ -64,21 +64,7 @@ public class OrderDetailRestController {
     }
     @DeleteMapping("/orderdetails/{orderDetailId}")
     public String deteleOrdertail(@PathVariable int orderDetailId)
-    {
-        Order_detail od = orderDetailService.findbyId(orderDetailId);
-        Order_detail newOd = new Order_detail();
-        newOd.setId(0);
-        newOd.setDiscount(od.getDiscount());
-        newOd.setQuantity(od.getQuantity());
-        newOd.setTotalmoney(od.getTotalmoney());
-      //  newOd.setOrders("cuong");
-        newOd.setProducts(od.getProducts());
-        newOd.setStatus(4);
-        newOd.setAvartar(od.getAvartar());
-        newOd.setName(od.getName());
-        
-       orderDetailService.save(newOd);
-       
+    {  
         orderDetailService.delete(orderDetailId);
         return "Delete orderDetail Id "+orderDetailId;
     }
