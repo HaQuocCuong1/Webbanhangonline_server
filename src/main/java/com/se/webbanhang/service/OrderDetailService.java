@@ -23,4 +23,6 @@ public interface OrderDetailService {
     public boolean updateStatusOrderDetail(int orderDetailId, int type);
     public List<Order_detail> getOrderDetailByStatus(int userId, int status);
     public Integer getorderDetailConfirm(int userId, int status);
+    public Double gettotalRevenue(int userId);
+    public Integer getTotalOrderdetailByMonth(int userId);
 }

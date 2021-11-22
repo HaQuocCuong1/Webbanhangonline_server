@@ -6,6 +6,7 @@
 package com.se.webbanhang.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -63,6 +64,10 @@ public class Order_detail {
     @Column(name = "status")
     private int status;
     
+    @NotNull
+    @Column(name = "dateorder")
+    private Date dateorder;
+    
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Orders orders;
@@ -70,10 +75,11 @@ public class Order_detail {
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Products products;
 
-    public Order_detail(double totalmoney, int quantity, double discount) {
+    public Order_detail(double totalmoney, int quantity, double discount, Date dateorder) {
         this.totalmoney = totalmoney;
         this.quantity = quantity;
         this.discount = discount;
+        this.dateorder = dateorder;
     }
     
     

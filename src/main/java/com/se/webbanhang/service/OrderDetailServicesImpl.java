@@ -13,6 +13,9 @@ import com.se.webbanhang.entity.Users;
 import com.se.webbanhang.exception.ApiRequestException;
 import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.repository.OrderDetailRespository;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -138,6 +141,25 @@ public class OrderDetailServicesImpl implements OrderDetailService{
                 count++;
             }
         }
+        return count;
+    }
+
+    @Override
+    public Double gettotalRevenue(int userId) {
+        List<Order_detail> listod = getOrderDetailByUserId(userId);
+        double totalrevenue = 0;
+        for(Order_detail od : listod)
+        {
+            totalrevenue += od.getTotalmoney();
+        }
+        return totalrevenue;
+    }
+
+    @Override
+    public Integer getTotalOrderdetailByMonth(int userId) {
+        LocalDate localDate = LocalDate.now();
+        Month month = localDate.getMonth();
+        int count = orderDetailRespository.totalOrderdetailByMonth(userId, month.getValue());
         return count;
     }
 }

@@ -53,6 +53,16 @@ public class OrderDetailRestController {
         // get persons from the service
         return orderDetailService.getorderDetailConfirm(userId, status); 
     }
+    @GetMapping("/totalrevenue/user/{userId}")
+    public Double totalRevenue(@PathVariable int userId) {
+        // get persons from the service
+        return orderDetailService.gettotalRevenue(userId); 
+    }
+    @GetMapping("/totalorderdetail/month/user/{userId}")
+    public Integer totalOrderdetailByMonth(@PathVariable int userId) {
+        // get persons from the service
+        return orderDetailService.getTotalOrderdetailByMonth(userId); 
+    }
     @PostMapping("/status/orderDetail/{orderDetailId}/type/{type}")
     public String updateFeatured(@PathVariable int orderDetailId, @PathVariable int type)
     {

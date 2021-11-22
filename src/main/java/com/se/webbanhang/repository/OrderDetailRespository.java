@@ -22,4 +22,9 @@ public interface OrderDetailRespository extends JpaRepository<Order_detail, Inte
     @Query("UPDATE Order_detail od SET od.status = ?2 WHERE od.id = ?1")
     @Modifying
     public void updateStatusOrderDetail(int orderDetailId, int type);
+    @Query(value = "select count(od.id) from order_detail od join products p "
+            + "on od.Products_id =  p.id join users u on p.Users_id = u.id "
+            + "where month(dateorder) = ?2 AND u.id=?1", nativeQuery = true
+    )
+    public Integer totalOrderdetailByMonth(int userId, int month);
 }

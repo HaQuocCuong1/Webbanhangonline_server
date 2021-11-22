@@ -100,6 +100,7 @@ public class OrderRestController {
                 orderdtail.setOrders(theOrder);
                 orderdtail.setAvartar(od.getAvartar());
                 orderdtail.setName(od.getName());
+                orderdtail.setDateorder(new Date(millis));
                 
                 theProducts1 = this.productService.findById(od.getProductId());
                 orderdtail.setProducts(theProducts1);

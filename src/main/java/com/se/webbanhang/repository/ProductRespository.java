@@ -6,6 +6,7 @@
 package com.se.webbanhang.repository;
 
 import com.se.webbanhang.entity.Products;
+import java.sql.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -38,4 +39,6 @@ public interface ProductRespository extends JpaRepository<Products, Integer>{
             + " LIKE %?1%")
     @Modifying
     public List<Products> findAllProduct(String searchText);
+//    @Query(value = "SELECT p FROM Products p WHERE p.date between ?1 and ?2", nativeQuery = true)
+//    public List<Products> findByStartDateBetween(Date fromDate, Date toDate);
 }
