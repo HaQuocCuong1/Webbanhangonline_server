@@ -4,6 +4,7 @@
  */
 package com.se.webbanhang.service;
 
+import com.se.webbanhang.entity.Products;
 import com.se.webbanhang.entity.Store;
 import com.se.webbanhang.entity.Users;
 import com.se.webbanhang.exception.NotFoundException;
@@ -24,6 +25,8 @@ public class StoreServiceImpl implements StoreService{
     private UsersService usersService;
     @Autowired
     private StoreRespository storeRespository;
+    @Autowired
+    private ProductService productService;
     
     
     @Override
@@ -66,6 +69,14 @@ public class StoreServiceImpl implements StoreService{
         }else {
             throw new NotFoundException("Did not find Store id: "+id);
         }
+        return theStore;
+    }
+
+    @Override
+    public Store findStoreByProductId(int productId) {
+        Products theProducts = productService.findById(productId);
+        Users theUsers = theProducts.getUser();
+        Store theStore = theUsers.getStore();
         return theStore;
     }
     
