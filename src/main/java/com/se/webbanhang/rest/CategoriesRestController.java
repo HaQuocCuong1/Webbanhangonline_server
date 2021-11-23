@@ -40,6 +40,11 @@ public class CategoriesRestController {
     {
         return categoriesService.findAll();
     }
+    @GetMapping("/categories/store/{storeId}")
+    public List<Categories> getCategoriBystoreId(@PathVariable int storeId)
+    {
+        return categoriesService.getCategoriBystoreId(storeId);
+    }
     @GetMapping("/categories/{categoriesId}")
     public Categories findByid(@PathVariable int categoriesId)
     {

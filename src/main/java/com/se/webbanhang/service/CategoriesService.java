@@ -16,5 +16,6 @@ public interface CategoriesService {
     public List<Categories> findAll();
     public Categories findbyId(int id);
     public void save(Categories theCategories);
-    public void delete(int id);  
+    public void delete(int id);
+    public List<Categories> getCategoriBystoreId(int storeId);
 }

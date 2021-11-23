@@ -66,9 +66,8 @@ public class StoreServiceImpl implements StoreService{
         if (result.isPresent())
         {
             theStore = result.get();
-        }else {
-            throw new NotFoundException("Did not find Store id: "+id);
-        }
+        }else
+            throw new NotFoundException("Not found Store Id: "+id);
         return theStore;
     }
 

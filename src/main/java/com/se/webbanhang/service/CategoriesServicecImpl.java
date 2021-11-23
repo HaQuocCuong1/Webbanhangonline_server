@@ -7,7 +7,11 @@ package com.se.webbanhang.service;
 
 import com.se.webbanhang.repository.CategoriesRespository;
 import com.se.webbanhang.entity.Categories;
+import com.se.webbanhang.entity.Products;
+import com.se.webbanhang.entity.Store;
+import com.se.webbanhang.entity.Users;
 import com.se.webbanhang.exception.NotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +23,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CategoriesServicecImpl implements CategoriesService{
-    
+    @Autowired
+    private StoreService storeService;
     private CategoriesRespository categoriesRespository;
     @Autowired
     public CategoriesServicecImpl(CategoriesRespository categoriesRespository) {
@@ -52,5 +57,21 @@ public class CategoriesServicecImpl implements CategoriesService{
     @Override
     public void delete(int id) {
       categoriesRespository.deleteById(id);
+    }
+
+    @Override
+    public List<Categories> getCategoriBystoreId(int storeId) {
+        Store theStore = storeService.findbyId(storeId);
+        Users theUsers= theStore.getUsers();
+        List<Products> products = theUsers.getProducts();
+        List<Categories> categorieses = new ArrayList<>();
+        for(Products p : products)
+        {
+            if(p != null)
+            {
+                categorieses.add(p.getCategories());
+            }
+        }
+        return categorieses;
     }
 }

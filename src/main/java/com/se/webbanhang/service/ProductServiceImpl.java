@@ -439,5 +439,73 @@ public class ProductServiceImpl implements ProductService{
             productses = productRespository.findAll();
         return productses;
     }
+
+    @Override
+    public List<Products> listproductForCategoriesByStore(int categoriesId, int storeId) {
+        List<Categories> listCategories = categoriesService.getCategoriBystoreId(storeId);
+        Users theUsers = usersService.findByStoreId(storeId);
+        List<Products> productses1 = new ArrayList<>();
+        for(Categories theCategories : listCategories)
+        {
+            if(theCategories.getId() == categoriesId)
+            {
+                List<Products> productses = theCategories.getProducts();
+                for(Products p : productses)
+                {
+                    if(p.getUser().getId() == theUsers.getId())
+                        productses1.add(p);
+                }
+            }
+        }
+        return productses1;
+    }
+
+    @Override
+    public List<Products> getproductForIncreaseByCategoriesIdAndStoreId(int categoriesId, int storeId) {
+        List<Products> productses = listproductForCategoriesByStore(categoriesId, storeId);
+        Collections.sort(productses, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o1.getPrice() - o2.getPrice());
+            }
+        });
+        return productses;
+    }
+
+    @Override
+    public List<Products> getproductForReducedByCategoriesIdAndStoreId(int categoriesId, int storeId) {
+        List<Products> productses = listproductForCategoriesByStore(categoriesId, storeId);
+        Collections.sort(productses, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o2.getPrice() - o1.getPrice());
+            }
+        });
+        return productses;
+    }
+
+    @Override
+    public List<Products> getproductForSellfastByCategoriesIdAndStoreId(int categoriesId, int storeId) {
+        List<Products> productses = listproductForCategoriesByStore(categoriesId, storeId);
+        Collections.sort(productses, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o2.getBan_nhanh()- o1.getBan_nhanh());
+            }
+        });
+        return productses;
+    }
+
+    @Override
+    public List<Products> getproductForDiscountByCategoriesIdAndStoreId(int categoriesId, int storeId) {
+        List<Products> productses = listproductForCategoriesByStore(categoriesId, storeId);
+        Collections.sort(productses, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return (int) (o2.getPromotion()- o1.getPromotion());
+            }
+        });
+        return productses;
+    }
     
 }

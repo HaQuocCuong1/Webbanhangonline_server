@@ -42,6 +42,11 @@ public class StoreRestController {
     {
         return storeService.findStoreByUser(userId);
     }
+    @GetMapping("/store/{storeId}")
+    public Store findStoreByStoreId(@PathVariable int storeId)
+    {
+        return storeService.findbyId(storeId);
+    }
     @GetMapping("/store/product/{productId}")
     public Store findStoreByProductId(@PathVariable int productId)
     {

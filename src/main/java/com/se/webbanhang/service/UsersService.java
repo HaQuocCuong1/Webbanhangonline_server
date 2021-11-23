@@ -25,4 +25,5 @@ public interface UsersService {
     public List<Role_user> getroles(int userId);
     public Role_user getRole(int userId, int roleId);
     public boolean findByVerificationCode(String code);
+    public Users findByStoreId(int storeId);
 }

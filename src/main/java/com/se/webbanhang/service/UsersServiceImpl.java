@@ -7,6 +7,7 @@ package com.se.webbanhang.service;
 
 import com.se.webbanhang.repository.UsersRespository;
 import com.se.webbanhang.entity.Role_user;
+import com.se.webbanhang.entity.Store;
 import com.se.webbanhang.entity.Users;
 import com.se.webbanhang.exception.NotFoundException;
 import com.se.webbanhang.service.RoleUserService;
@@ -26,6 +27,8 @@ public class UsersServiceImpl implements UsersService{
     private UsersRespository usersRespository;
     @Autowired
     private RoleUserService roleUserService;
+    @Autowired
+    private StoreService storeService;
 
     @Override
     public List<Users> findAll() {
@@ -101,6 +104,13 @@ public class UsersServiceImpl implements UsersService{
             return true;
         }
             
+    }
+
+    @Override
+    public Users findByStoreId(int storeId) {
+        Store theStore = storeService.findbyId(storeId);
+        Users theUsers = theStore.getUsers();
+        return theUsers;
     }
     
 }

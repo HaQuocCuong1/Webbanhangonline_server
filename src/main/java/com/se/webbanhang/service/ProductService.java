@@ -46,4 +46,9 @@ public interface ProductService {
     public List<Products> getlistProductsbyPriceReducedStore(int storeId);
     public List<Products> getlistProductsbySellfastStore(int storeId);
     public List<Products> getlistProductsbySearchText(String searchText);
+    public List<Products> listproductForCategoriesByStore(int categoriesId,int storeId);
+    public List<Products> getproductForIncreaseByCategoriesIdAndStoreId(int categoriesId,int storeId);
+    public List<Products> getproductForReducedByCategoriesIdAndStoreId(int categoriesId,int storeId);
+    public List<Products> getproductForSellfastByCategoriesIdAndStoreId(int categoriesId,int storeId);
+    public List<Products> getproductForDiscountByCategoriesIdAndStoreId(int categoriesId,int storeId);
 }

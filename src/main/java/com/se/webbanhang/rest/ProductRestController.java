@@ -316,6 +316,11 @@ public class ProductRestController {
         List<Products> listproduct = productService.getlistProductsbyPriceIncreaseStore(storeId);
         return listproduct; 
     }
+    @GetMapping("/products/categories/{categoriesId}/store/{storeId}")
+    public List<Products> listproductForCategoriesByStore(@PathVariable int categoriesId, @PathVariable int storeId) {
+        List<Products> listproduct = productService.listproductForCategoriesByStore(categoriesId,storeId);
+        return listproduct; 
+    }
     @GetMapping("/products/reduced/store/{storeId}")
     public List<Products> listproductForPriceReducedByStore(@PathVariable int storeId) {
         List<Products> listproduct = productService.getlistProductsbyPriceReducedStore(storeId);
@@ -324,6 +329,26 @@ public class ProductRestController {
     @GetMapping("/products/sellfast/store/{storeId}")
     public List<Products> listproductForSellfastStore(@PathVariable int storeId) {
         List<Products> listproduct = productService.getlistProductsbySellfastStore(storeId);
+        return listproduct; 
+    }
+    @GetMapping("/products/increase/categories/{categoriesId}/store/{storeId}")
+    public List<Products> listproductForIncreaseByCategoriesIdAndStoreId(@PathVariable int categoriesId,@PathVariable int storeId) {
+        List<Products> listproduct = productService.getproductForIncreaseByCategoriesIdAndStoreId(categoriesId,storeId);
+        return listproduct; 
+    }
+    @GetMapping("/products/reduced/categories/{categoriesId}/store/{storeId}")
+    public List<Products> listproductForReducedByCategoriesIdAndStoreId(@PathVariable int categoriesId,@PathVariable int storeId) {
+        List<Products> listproduct = productService.getproductForReducedByCategoriesIdAndStoreId(categoriesId,storeId);
+        return listproduct; 
+    }
+    @GetMapping("/products/sellfast/categories/{categoriesId}/store/{storeId}")
+    public List<Products> listproductForSellfastByCategoriesIdAndStoreId(@PathVariable int categoriesId,@PathVariable int storeId) {
+        List<Products> listproduct = productService.getproductForSellfastByCategoriesIdAndStoreId(categoriesId,storeId);
+        return listproduct; 
+    }
+    @GetMapping("/products/discount/categories/{categoriesId}/store/{storeId}")
+    public List<Products> listproductForDiscountByCategoriesIdAndStoreId(@PathVariable int categoriesId,@PathVariable int storeId) {
+        List<Products> listproduct = productService.getproductForDiscountByCategoriesIdAndStoreId(categoriesId,storeId);
         return listproduct; 
     }
     @PostMapping("/products/searchtext")
