@@ -81,6 +81,10 @@ public class Products implements Serializable{
     @JsonIgnore
     private Categories categories;
     
+    @OneToMany(mappedBy = "products",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Comment> comments;
+    
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL)
     private List<Picture_product> listPictureproduct;
     @OneToMany(mappedBy = "products", cascade = CascadeType.REFRESH)
@@ -92,7 +96,7 @@ public class Products implements Serializable{
     public void setId(int id) {
         this.id = id;
     }
-
+    
     public String getName() {
         return name;
     }
@@ -238,6 +242,14 @@ public class Products implements Serializable{
         this.status = status;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+    
     public List<Picture_product> getListPictureproduct() {
         return listPictureproduct;
     }

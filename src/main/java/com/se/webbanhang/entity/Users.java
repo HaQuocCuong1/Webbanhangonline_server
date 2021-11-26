@@ -68,6 +68,10 @@ public class Users {
     private List<Products> products;
     @OneToOne(mappedBy = "users")
     private Store store;
+    
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private List<Comment> comment;
+    
     public Users() {
     }
     
