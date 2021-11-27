@@ -507,5 +507,21 @@ public class ProductServiceImpl implements ProductService{
         });
         return productses;
     }
+
+    @Override
+    public Integer totalAllProducByUser(int userId) {
+        int count = 0;
+        Users theUsers = usersService.findbyId(userId);
+        if(theUsers != null)
+        {
+            List<Products> products = theUsers.getProducts();
+            for(Products p : products)
+            {
+                count++;
+            }
+        }else
+            throw new NotFoundException("Not found User id: "+ userId);
+        return count;
+    }
     
 }

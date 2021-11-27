@@ -351,6 +351,11 @@ public class ProductRestController {
         List<Products> listproduct = productService.getproductForDiscountByCategoriesIdAndStoreId(categoriesId,storeId);
         return listproduct; 
     }
+    @GetMapping("/products/totalall/user/{userId}")
+    public Integer totalAllProducByUser(@PathVariable int userId) {
+        int total = productService.totalAllProducByUser(userId);
+        return total; 
+    }
     @PostMapping("/products/searchtext")
     public List<Products> searcehText(@RequestBody SearchProductDTO searchtext)
     {

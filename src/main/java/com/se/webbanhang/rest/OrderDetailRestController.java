@@ -5,9 +5,11 @@
  */
 package com.se.webbanhang.rest;
 
+import com.se.webbanhang.dto.request.ListRevenueDTO;
 import com.se.webbanhang.dto.request.OrderDetailDTO;
 import com.se.webbanhang.entity.Order_detail;
 import com.se.webbanhang.service.OrderDetailService;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +65,31 @@ public class OrderDetailRestController {
         // get persons from the service
         return orderDetailService.getTotalOrderdetailByMonth(userId); 
     }
+    @GetMapping("/totalrevenue/month/user/{userId}")
+    public Double totalrevenueByMonth(@PathVariable int userId) {
+        // get persons from the service
+        return orderDetailService.getTotalrevenueByMonth(userId); 
+    }
+    @GetMapping("/totalorder/month/user/{userId}")
+    public Integer totalorderByMonth(@PathVariable int userId) {
+        // get persons from the service
+        return orderDetailService.totalorderByMonth(userId); 
+    }
+    @GetMapping("/totalrevenue/fromdate/{fromdate}/todate/{todate}/user/{userId}")
+    public Double totalrevenueByFromDateAndToDate(@PathVariable int userId, @PathVariable Date fromdate, @PathVariable Date todate) {
+        // get persons from the service
+        return orderDetailService.getTotalrevenueByFromDateAndToDate(userId, fromdate, todate); 
+    }
+    @GetMapping("/totalorder/fromdate/{fromdate}/todate/{todate}/user/{userId}")
+    public Integer totalorderByFromDateAndToDate(@PathVariable int userId, @PathVariable Date fromdate, @PathVariable Date todate) {
+        // get persons from the service
+        return orderDetailService.totalorderByFromDateAndToDate(userId, fromdate, todate); 
+    }
+    @GetMapping("/revenue/user/{userId}")
+    public ListRevenueDTO RevenueChart(@PathVariable int userId) {
+        // get persons from the service
+        return orderDetailService.revenueChart(userId); 
+    }
     @PostMapping("/status/orderDetail/{orderDetailId}/type/{type}")
     public String updateFeatured(@PathVariable int orderDetailId, @PathVariable int type)
     {
@@ -72,10 +99,10 @@ public class OrderDetailRestController {
         else
             return "Confirm order fail!";
     }
-    @DeleteMapping("/orderdetails/{orderDetailId}")
-    public String deteleOrdertail(@PathVariable int orderDetailId)
+    @DeleteMapping("/orderdetails/{orderDetailId}/type/{type}")
+    public String deteleOrdertail(@PathVariable int orderDetailId, @PathVariable int type)
     {  
-        orderDetailService.delete(orderDetailId);
+        orderDetailService.delete(orderDetailId, type);
         return "Delete orderDetail Id "+orderDetailId;
     }
 }

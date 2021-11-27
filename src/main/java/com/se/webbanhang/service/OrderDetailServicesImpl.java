@@ -5,7 +5,9 @@
  */
 package com.se.webbanhang.service;
 
+import com.se.webbanhang.dto.request.ListRevenueDTO;
 import com.se.webbanhang.dto.request.OrderDetailDTO;
+import com.se.webbanhang.dto.request.RevenueDTO;
 import com.se.webbanhang.entity.Order_detail;
 import com.se.webbanhang.entity.Orders;
 import com.se.webbanhang.entity.Products;
@@ -59,9 +61,9 @@ public class OrderDetailServicesImpl implements OrderDetailService{
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id, int type) {
         Order_detail od = findbyId(id);
-        if(od.getStatus() == 0)
+        if(od.getStatus() == type)
             orderDetailRespository.deleteById(id);
         else
             throw new ApiRequestException("This product cannot be deleted due to processing");
@@ -161,5 +163,71 @@ public class OrderDetailServicesImpl implements OrderDetailService{
         Month month = localDate.getMonth();
         int count = orderDetailRespository.totalOrderdetailByMonth(userId, month.getValue());
         return count;
+    }
+
+    @Override
+    public Double getTotalrevenueByMonth(int userId) {
+        double total = 0;
+        LocalDate localDate = LocalDate.now();
+        Month month = localDate.getMonth();
+        Users theUsers = usersService.findbyId(userId);
+        if(theUsers != null)
+        {
+            if(theUsers.getProducts().isEmpty())
+                throw new ApiRequestException("User not products !");
+            else
+                total = orderDetailRespository.totalrevenueByMonth(theUsers.getId(), month.getValue());
+        }else{
+            throw new NotFoundException("Not found User Id: "+userId);
+        }
+        return total;
+    }
+
+    @Override
+    public Double getTotalrevenueByFromDateAndToDate(int userId, Date fromdate, Date todate) {
+        double total = 0;
+        Users theUsers = usersService.findbyId(userId);
+        if(theUsers != null)
+        {
+            if(theUsers.getProducts().isEmpty())
+                throw new ApiRequestException("User not products !");
+            else
+                total = orderDetailRespository.getTotalrevenueByFromDateAndToDate(theUsers.getId(), fromdate, todate);
+        }else{
+            throw new NotFoundException("Not found User Id: "+userId);
+        }
+        return total;
+    }
+
+    @Override
+    public Integer totalorderByMonth(int userId) {
+        LocalDate localDate = LocalDate.now();
+        Month month = localDate.getMonth();
+        int count = orderDetailRespository.totalorderByMonth(userId, month.getValue());
+        return count;
+    }
+
+    @Override
+    public Integer totalorderByFromDateAndToDate(int userId, Date fromdate, Date todate) {
+        int total = orderDetailRespository.getTotalOrderByFromDateAndToDate(userId, fromdate, todate);
+        return total;
+    }
+
+    @Override
+    public ListRevenueDTO revenueChart(int userId) {
+        Users theUsers = usersService.findbyId(userId);
+        List<RevenueDTO> revenues = new ArrayList<>();
+        ListRevenueDTO listRevenueDTO = new ListRevenueDTO();
+//        if(theUsers != null)
+//        {
+//            revenues = orderDetailRespository.getRevenueByUserId(userId);
+//            for(RevenueDTO r : revenues)
+//            {
+//                listRevenueDTO.getThongke().add(r);
+//            }
+//        }else{
+//            throw new NotFoundException("Not found User Id: "+userId);
+//        }
+        return listRevenueDTO;
     }
 }
