@@ -218,16 +218,13 @@ public class OrderDetailServicesImpl implements OrderDetailService{
         Users theUsers = usersService.findbyId(userId);
         List<RevenueDTO> revenues = new ArrayList<>();
         ListRevenueDTO listRevenueDTO = new ListRevenueDTO();
-//        if(theUsers != null)
-//        {
-//            revenues = orderDetailRespository.getRevenueByUserId(userId);
-//            for(RevenueDTO r : revenues)
-//            {
-//                listRevenueDTO.getThongke().add(r);
-//            }
-//        }else{
-//            throw new NotFoundException("Not found User Id: "+userId);
-//        }
+        if(theUsers != null)
+        {
+            revenues = orderDetailRespository.getRevenueByUserId(userId);
+            listRevenueDTO.setThongke(revenues);
+        }else{
+            throw new NotFoundException("Not found User Id: "+userId);
+        }
         return listRevenueDTO;
     }
 }

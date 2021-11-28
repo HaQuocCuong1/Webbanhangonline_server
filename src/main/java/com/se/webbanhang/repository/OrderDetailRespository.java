@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,10 +56,11 @@ public interface OrderDetailRespository extends JpaRepository<Order_detail, Inte
 //            + "join users u on u.id = p.Users_id where u.id = ?1 "
 //            + "GROUP BY thang", nativeQuery = true
 //    )
-//    @Query("SELECT new RevenueDTO(month(OD.dateorder), SUM(OD.totalmoney)) "
-//            + "FROM order_detail OD join OD.products p  "
-//            + "join p.users u where u.id = ?1 "
+//    @Query(value = "SELECT new com.se.webbanhang.dto.request.RevenueDTO(month(OD.dateorder), SUM(OD.totalmoney)) "
+//            + "FROM order_detail OD, products p  "
+//            + "users u where p.id = OD.Products_id AND u.id = p.Users_id u.id = ?1 "
 //            + "GROUP BY month(OD.dateorder)"
 //    )
-//    public List<RevenueDTO> getRevenueByUserId(int userId);
+    @Query(name = "getRevenueByUserId_dto",nativeQuery = true)
+    public List<RevenueDTO> getRevenueByUserId(int userId);
 }
