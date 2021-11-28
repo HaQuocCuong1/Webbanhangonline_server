@@ -51,16 +51,7 @@ public interface OrderDetailRespository extends JpaRepository<Order_detail, Inte
             + "where u.id = ?1 AND OD.dateorder between ?2 and ?3", nativeQuery = true
     )
     public Integer getTotalOrderByFromDateAndToDate(int userId, Date fromdate,Date todate);
-//    @Query(value = "SELECT month(OD.dateorder) as thang, SUM(OD.totalmoney) as total "
-//            + "FROM order_detail OD join products p on p.id = OD.Products_id "
-//            + "join users u on u.id = p.Users_id where u.id = ?1 "
-//            + "GROUP BY thang", nativeQuery = true
-//    )
-//    @Query(value = "SELECT new com.se.webbanhang.dto.request.RevenueDTO(month(OD.dateorder), SUM(OD.totalmoney)) "
-//            + "FROM order_detail OD, products p  "
-//            + "users u where p.id = OD.Products_id AND u.id = p.Users_id u.id = ?1 "
-//            + "GROUP BY month(OD.dateorder)"
-//    )
+    
     @Query(name = "getRevenueByUserId_dto",nativeQuery = true)
     public List<RevenueDTO> getRevenueByUserId(int userId);
 }
