@@ -104,6 +104,24 @@ public class UsersRestController {
         }
         return theRoles;
     }
+    @GetMapping("/users/totaluser")
+    public Integer totalUser()
+    {
+        int total = usersService.totalUser("user");
+        return total;
+    }
+    @GetMapping("/users/totalbuyer")
+    public Integer totalBuyer()
+    {
+        int total = usersService.totalUser("Buyer");
+        return total;
+    }
+    @GetMapping("/users/totalinvenue")
+    public Double totalInvenue()
+    {
+        Double total = usersService.totalInvenue();
+        return total;
+    }
     @PostMapping("/sigup")
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException
     {

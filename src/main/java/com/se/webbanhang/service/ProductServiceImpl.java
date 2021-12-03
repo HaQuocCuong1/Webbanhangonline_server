@@ -523,5 +523,17 @@ public class ProductServiceImpl implements ProductService{
             throw new NotFoundException("Not found User id: "+ userId);
         return count;
     }
+
+    @Override
+    public Integer totalApproveProduct() {
+        int count = 0;
+        List<Products> products = getlistProducts();
+        for(Products p : products)
+        {
+            if(p.getStatus() == 0)
+                count++;
+        }
+        return count;
+    }
     
 }

@@ -18,4 +18,5 @@ public interface StoreService {
     public void save(Store theStore);
     public void deleteStore(int id);
     public Store findStoreByProductId(int productId);
+    public Integer totalStore();
 }

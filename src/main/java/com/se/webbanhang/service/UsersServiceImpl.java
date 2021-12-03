@@ -5,6 +5,8 @@
  */
 package com.se.webbanhang.service;
 
+import com.se.webbanhang.entity.Order_detail;
+import com.se.webbanhang.entity.Orders;
 import com.se.webbanhang.repository.UsersRespository;
 import com.se.webbanhang.entity.Role_user;
 import com.se.webbanhang.entity.Store;
@@ -111,6 +113,49 @@ public class UsersServiceImpl implements UsersService{
         Store theStore = storeService.findbyId(storeId);
         Users theUsers = theStore.getUsers();
         return theUsers;
+    }
+
+    @Override
+    public Integer totalUser(String type) {
+        List<Users> users = findAll();
+        int count = 0;
+        for(Users u : users)
+        {
+            List<Role_user> roles = u.getListroles();
+            for(Role_user role : roles)
+            {
+                if(role.getRole().equals(type))
+                    count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public Double totalInvenue() {
+        double total = 0;
+        List<Users> userses = findAll();
+        for(Users u : userses)
+        {
+            List<Role_user> roles = u.getListroles();
+            for(Role_user role : roles)
+            {
+                if(role.getRole().equals("user") || role.getRole().equals("Buyer"))
+                {
+                    Users theUsers = role.getUsers();
+                    List<Orders> listOrder = theUsers.getListorders();
+                    for(Orders theOrders: listOrder)
+                    {
+                        List<Order_detail> od1 = theOrders.getListOrderDetail();
+                        for (Order_detail od2 : od1)
+                        {
+                            total+=od2.getTotalmoney();
+                        }
+                    }
+                }
+            }
+        }
+        return total;
     }
     
 }

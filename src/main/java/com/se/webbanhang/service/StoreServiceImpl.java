@@ -78,5 +78,16 @@ public class StoreServiceImpl implements StoreService{
         Store theStore = theUsers.getStore();
         return theStore;
     }
+
+    @Override
+    public Integer totalStore() {
+       int count = 0;
+       List<Store> stores = findAll();
+       for(Store s : stores)
+       {
+           count++;
+       }
+       return count;
+    }
     
 }

@@ -356,6 +356,11 @@ public class ProductRestController {
         int total = productService.totalAllProducByUser(userId);
         return total; 
     }
+    @GetMapping("/products/totalapprove")
+    public Integer totalApproveProduct() {
+        int total = productService.totalApproveProduct();
+        return total; 
+    }
     @PostMapping("/products/searchtext")
     public List<Products> searcehText(@RequestBody SearchProductDTO searchtext)
     {

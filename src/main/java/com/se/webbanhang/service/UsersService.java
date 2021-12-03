@@ -26,4 +26,6 @@ public interface UsersService {
     public Role_user getRole(int userId, int roleId);
     public boolean findByVerificationCode(String code);
     public Users findByStoreId(int storeId);
+    public Integer totalUser(String user);
+    public Double totalInvenue();
 }
