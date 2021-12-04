@@ -34,11 +34,8 @@ public interface ProductRespository extends JpaRepository<Products, Integer>{
     @Query("UPDATE Products p SET p.quantity = ?2 WHERE p.id = ?1")
     @Modifying
     public void updateQuantityProduct(int id, int value);
-    @Query("SELECT p FROM Products p WHERE "
-            + "CONCAT(p.id, p.name, p.sort_description, p.detail_description, p.price)"
+    @Query("SELECT p FROM Products p,Store s WHERE "
+            + "CONCAT(p.id, p.name, p.sort_description, p.detail_description, p.price, s.name)"
             + " LIKE %?1%")
-    @Modifying
     public List<Products> findAllProduct(String searchText);
-//    @Query(value = "SELECT p FROM Products p WHERE p.date between ?1 and ?2", nativeQuery = true)
-//    public List<Products> findByStartDateBetween(Date fromDate, Date toDate);
 }
