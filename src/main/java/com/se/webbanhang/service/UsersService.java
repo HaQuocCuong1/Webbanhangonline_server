@@ -28,4 +28,7 @@ public interface UsersService {
     public Users findByStoreId(int storeId);
     public Integer totalUser(String user);
     public Double totalInvenue();
+    public Boolean confirmUser(int userId);
+    public List<Users> findAllUserNotConfirm();
+    public Integer totalNotConfirm();
 }

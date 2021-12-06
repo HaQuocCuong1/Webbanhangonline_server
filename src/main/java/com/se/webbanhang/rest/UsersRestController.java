@@ -122,6 +122,26 @@ public class UsersRestController {
         Double total = usersService.totalInvenue();
         return total;
     }
+    @GetMapping("/users/{userId}/confirm")
+    public String confirmUser(@PathVariable int userId)
+    {
+        boolean check = usersService.confirmUser(userId);
+        if(check == true)
+        {
+            return "Confirm success!";
+        }else
+            return "Confirm faile!";
+    }
+    @GetMapping("/users/not-confirm")
+    public List<Users> findAllUserNotConfirm()
+    {
+       return usersService.findAllUserNotConfirm();
+    }
+    @GetMapping("/users/total-not-confirm")
+    public Integer totalNotConfirm()
+    {
+       return usersService.totalNotConfirm();
+    }
     @PostMapping("/sigup")
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException
     {
@@ -169,8 +189,6 @@ public class UsersRestController {
         roles.setId(0);
         theUsers.addRoleUser(roles);
         roleUserService.save(roles);
-        String siteURL = Utility.getSiteURL(request);
-        sendVerificationEmail(theUsers, siteURL);
         return new ResponseEntity<>(new ReponseMessage("Create user message"),HttpStatus.OK);
     }
     @PostMapping("/signin")
