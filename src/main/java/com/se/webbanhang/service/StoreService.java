@@ -4,6 +4,8 @@
  */
 package com.se.webbanhang.service;
 
+import com.se.webbanhang.dto.request.ListStore;
+import com.se.webbanhang.dto.request.QueryStoreDTO;
 import com.se.webbanhang.entity.Store;
 import java.util.List;
 
@@ -19,4 +21,5 @@ public interface StoreService {
     public void deleteStore(int id);
     public Store findStoreByProductId(int productId);
     public Integer totalStore();
+    public ListStore findAllSore();
 }

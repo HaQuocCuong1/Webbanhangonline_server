@@ -4,6 +4,8 @@
  */
 package com.se.webbanhang.rest;
 
+import com.se.webbanhang.dto.request.ListStore;
+import com.se.webbanhang.dto.request.QueryStoreDTO;
 import com.se.webbanhang.dto.request.StoreDTO;
 import com.se.webbanhang.entity.Store;
 import com.se.webbanhang.entity.Users;
@@ -13,6 +15,7 @@ import com.se.webbanhang.service.UsersService;
 import java.sql.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,9 +36,9 @@ public class StoreRestController {
     private StoreService storeService;
     
     @GetMapping("/stores")
-    public List<Store> findAll()
+    public ListStore findAll()
     {
-        return storeService.findAll();
+        return storeService.findAllSore();
     }
     @GetMapping("/store/user/{userId}")
     public Store findStoreByUser(@PathVariable int userId)
@@ -86,5 +89,11 @@ public class StoreRestController {
         }
         storeService.save(theStore);
         return "Create shop success";
+    }
+    @DeleteMapping("/store/{storeId}")
+    public String deleteStore(@PathVariable int storeId)
+    {
+        storeService.deleteStore(storeId);
+        return "Delete success store Id "+storeId;
     }
 }

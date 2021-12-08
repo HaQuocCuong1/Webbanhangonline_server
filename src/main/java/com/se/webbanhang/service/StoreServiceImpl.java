@@ -4,6 +4,8 @@
  */
 package com.se.webbanhang.service;
 
+import com.se.webbanhang.dto.request.ListStore;
+import com.se.webbanhang.dto.request.QueryStoreDTO;
 import com.se.webbanhang.entity.Products;
 import com.se.webbanhang.entity.Store;
 import com.se.webbanhang.entity.Users;
@@ -88,6 +90,18 @@ public class StoreServiceImpl implements StoreService{
            count++;
        }
        return count;
+    }
+
+    @Override
+    public ListStore findAllSore() {
+        List<QueryStoreDTO> list = storeRespository.findAllStore();
+        ListStore listStore = new ListStore();
+        
+        if(!list.isEmpty())
+        {
+            listStore.setListSotre(list);
+        }
+       return listStore;
     }
     
 }
