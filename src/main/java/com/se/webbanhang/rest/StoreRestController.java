@@ -36,7 +36,12 @@ public class StoreRestController {
     private StoreService storeService;
     
     @GetMapping("/stores")
-    public ListStore findAll()
+    public List<Store> findAll()
+    {
+        return storeService.findAll();
+    }
+    @GetMapping("/admin/stores")
+    public ListStore findAllSore()
     {
         return storeService.findAllSore();
     }

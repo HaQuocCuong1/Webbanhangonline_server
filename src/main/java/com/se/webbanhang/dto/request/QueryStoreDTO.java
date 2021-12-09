@@ -4,7 +4,7 @@
  */
 package com.se.webbanhang.dto.request;
 
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.ColumnResult;
 import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;

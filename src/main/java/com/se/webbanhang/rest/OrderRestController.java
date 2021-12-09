@@ -188,7 +188,7 @@ public class OrderRestController {
         return "Delete order Id: "+orderId;
     }
     //Verifi order
-    @PostMapping("/verify/orders/{orderId}")
+    @PostMapping("/orders/{orderId}/verify")
     public String verifyOrders(@PathVariable int orderId)
     {
         boolean checkupdate = orderService.updateStatusOrder(orderId);

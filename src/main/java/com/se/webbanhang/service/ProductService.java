@@ -51,6 +51,8 @@ public interface ProductService {
     public List<Products> getproductForReducedByCategoriesIdAndStoreId(int categoriesId,int storeId);
     public List<Products> getproductForSellfastByCategoriesIdAndStoreId(int categoriesId,int storeId);
     public List<Products> getproductForDiscountByCategoriesIdAndStoreId(int categoriesId,int storeId);
+    public List<Products> listproductnews();
+    public List<Products> listproductnewsByCategorieId(int categorieId);
     public Integer totalAllProducByUser(int userId);
     public Integer totalApproveProduct();
 }
