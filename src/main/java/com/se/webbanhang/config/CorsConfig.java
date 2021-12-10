@@ -22,7 +22,7 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
-                        .allowedOrigins("http://localhost:3000", "http://localhost:3006");
+                        .allowedOrigins("http://localhost:3000", "http://localhost:3006", "https://shop-cookies.netlify.app");
             }
         };
     }

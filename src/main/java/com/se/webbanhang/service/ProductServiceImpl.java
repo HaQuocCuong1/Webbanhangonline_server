@@ -560,5 +560,18 @@ public class ProductServiceImpl implements ProductService{
         });
         return products;
     }
+
+    @Override
+    public List<Products> listproductnewsBySupplierId(int supplierId) {
+        Supplier theSupplier = supplierService.findbyId(supplierId);
+        List<Products> products = theSupplier.getProducts();
+        Collections.sort(products, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return o2.getDate_sale().compareTo(o1.getDate_sale());
+            }
+        });
+        return products;
+    }
     
 }

@@ -53,6 +53,7 @@ public interface ProductService {
     public List<Products> getproductForDiscountByCategoriesIdAndStoreId(int categoriesId,int storeId);
     public List<Products> listproductnews();
     public List<Products> listproductnewsByCategorieId(int categorieId);
+    public List<Products> listproductnewsBySupplierId(int supplierId);
     public Integer totalAllProducByUser(int userId);
     public Integer totalApproveProduct();
 }
