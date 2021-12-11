@@ -573,5 +573,19 @@ public class ProductServiceImpl implements ProductService{
         });
         return products;
     }
+
+    @Override
+    public List<Products> listproductnewsByStoreId(int storeId) {
+        Store theStore = storeService.findbyId(storeId);
+        Users theUsers = theStore.getUsers();
+        List<Products> products = theUsers.getProducts();
+        Collections.sort(products, new Comparator<Products>() {
+            @Override
+            public int compare(Products o1, Products o2) {
+                return o2.getDate_sale().compareTo(o1.getDate_sale());
+            }
+        });
+        return products;
+    }
     
 }

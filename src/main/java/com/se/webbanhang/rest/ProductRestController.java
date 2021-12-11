@@ -326,6 +326,11 @@ public class ProductRestController {
         List<Products> listproduct = productService.listproductnewsBySupplierId(supplierId);
         return listproduct; 
     }
+    @GetMapping("/products/product-new/store/{storeId}")
+    public List<Products> listproductnewsByStoreId(@PathVariable int storeId) {
+        List<Products> listproduct = productService.listproductnewsByStoreId(storeId);
+        return listproduct; 
+    }
     @GetMapping("/products/increase/store/{storeId}")
     public List<Products> listproductForPriceIncreaseByStore(@PathVariable int storeId) {
         List<Products> listproduct = productService.getlistProductsbyPriceIncreaseStore(storeId);
