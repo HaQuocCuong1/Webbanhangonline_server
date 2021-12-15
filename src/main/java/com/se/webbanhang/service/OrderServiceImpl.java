@@ -139,7 +139,7 @@ public class OrderServiceImpl implements OrderService{
             mailSender.send(message);
         } catch(MessagingException e)
         {
-            throw new IllegalStateException("failed to send mail");
+           throw new IllegalStateException("failed to send mail", e);
         }
     }
 }
