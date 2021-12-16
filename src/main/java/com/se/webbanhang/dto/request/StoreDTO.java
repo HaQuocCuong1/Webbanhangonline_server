@@ -1,6 +1,7 @@
 
 package com.se.webbanhang.dto.request;
 
+import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class StoreDTO {
     
     private String name;
     
+    private Date date;
     
     private String logo;
     

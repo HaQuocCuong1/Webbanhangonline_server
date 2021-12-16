@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -95,6 +96,35 @@ public class StoreRestController {
         }
         storeService.save(theStore);
         return "Create shop success";
+    }
+    @PutMapping("/stores/user/{userId}")
+    public String updateStore(@RequestBody StoreDTO thestoDTO, @PathVariable int userId)
+    {
+        Store theStore = null;
+        if(thestoDTO != null)
+        {
+            Users theUser = usersService.findbyId(userId);
+            if(theUser != null)
+            {
+                theStore = new Store();
+                theStore.setId(thestoDTO.getId());
+                theStore.setName(thestoDTO.getName());
+                theStore.setCode(thestoDTO.getCode());
+                theStore.setDateStore(thestoDTO.getDate());
+                theStore.setUsers(theUser);
+                if(thestoDTO.getLogo() != null)
+                {
+                    theStore.setLogo(thestoDTO.getLogo());
+                }else{
+                    theStore.setLogo("https://res.cloudinary.com/devatchannel/image/upload/v1602752402/avatar/avatar_cugq40.png?fbclid=IwAR1WVZLl0dmt01nM1K4-Lvy30w1-p5XOS7qATZNA7udT-Heak0NA9MvQnys");
+                }
+            }
+            else{
+                throw new NotFoundException("User id not found - " + userId);
+            }
+        }
+        storeService.save(theStore);
+        return "Update shop success";
     }
     @DeleteMapping("/store/{storeId}")
     public String deleteStore(@PathVariable int storeId)

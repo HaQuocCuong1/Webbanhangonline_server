@@ -228,7 +228,8 @@ public class UsersRestController {
     public String verifiAccount(@Param("code") String code)
     {
         boolean verified = usersService.findByVerificationCode(code);
-        String pageTitle = verified ? "Verification Successded!" : "Verification Faile";
+        String back_home = "<a href='https://shop-cookies.netlify.app' style='text-decoration: none;border-radius: 3px; padding: 10px 20px; background:blue; color: white;'>Trở lại trang chủ</a>";
+        String pageTitle = verified ? "<h3 style='width:100%; text-align:center; font-size:30px; color: blue;'>Verification Successded!</h3>"+back_home : "<h3 style='width:100%; text-align:center; font-size:30px; color: rgb(245, 52, 62);'>Verification Faile</h3>"+back_home;
         return pageTitle;
     }
     public void sendVerificationEmail(Users theUsers, String siteURL) throws MessagingException, UnsupportedEncodingException {
