@@ -15,6 +15,7 @@ import com.se.webbanhang.entity.Picture_product;
 import com.se.webbanhang.entity.Products;
 import com.se.webbanhang.entity.Supplier;
 import com.se.webbanhang.entity.Users;
+import com.se.webbanhang.exception.ApiRequestException;
 import com.se.webbanhang.model.Product;
 import com.se.webbanhang.service.CategoriesService;
 import com.se.webbanhang.service.PictureProductService;
@@ -191,7 +192,10 @@ public class ProductRestController {
             throw new RuntimeException("Product id not found - " + productId);
         }
         else {
-            productService.deleteProducts(productId);
+           if(theProducts.getListOrderDetail().isEmpty())
+                productService.deleteProducts(productId);
+           else
+               throw new ApiRequestException("Not deltetehe product has been ordered");
         }
 
         return "Deleted product id - " + productId;
