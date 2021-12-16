@@ -195,7 +195,7 @@ public class ProductRestController {
            if(theProducts.getListOrderDetail().isEmpty())
                 productService.deleteProducts(productId);
            else
-               throw new ApiRequestException("Not deltetehe product has been ordered");
+               throw new ApiRequestException("Không xóa được sản phẩm vì đang đặt hàng");
         }
 
         return "Deleted product id - " + productId;
