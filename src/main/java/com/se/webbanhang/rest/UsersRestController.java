@@ -148,12 +148,12 @@ public class UsersRestController {
     {
         if (usersService.existsByUsername(signUpForm.getUsername()))
         {
-            throw new ApiRequestException("Username exists! Please try again");
+            throw new ApiRequestException("Username đã tồn tại! Vui lòng thử lại");
         }
         if (usersService.existsByEmail(signUpForm.getEmail()))
         {
             //return new ResponseEntity<>(new ReponseMessage("Email đã tồn tại! Vui lòng thử lại!"), HttpStatus.OK);
-            throw new ApiRequestException("Email exists! Please try again");
+            throw new ApiRequestException("Email đã tồn tại! Vui lòng thử lại");
         }
         Users theUsers = new Users(signUpForm.getName(), signUpForm.getUsername(), signUpForm.getPhone(), signUpForm.getEmail(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getAddress(), AVARTAR_DEFAULT);
         theUsers.setId(0);
@@ -173,11 +173,11 @@ public class UsersRestController {
     {
         if (usersService.existsByUsername(signUpForm.getUsername()))
         {
-            throw new ApiRequestException("Username exists! Please try again");
+            throw new ApiRequestException("Username đã tồn tại! Vui lòng thử lại");
         }
         if (usersService.existsByEmail(signUpForm.getEmail()))
         {
-            throw new ApiRequestException("Email exists! Please try again");
+            throw new ApiRequestException("Email đã tồn tại! Vui lòng thử lại");
             //return new ResponseEntity<>(new ReponseMessage("The email existed! Please try agin!"), HttpStatus.OK);
         }
     
