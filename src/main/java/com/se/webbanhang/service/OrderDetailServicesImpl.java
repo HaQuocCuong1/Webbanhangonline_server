@@ -94,7 +94,7 @@ public class OrderDetailServicesImpl implements OrderDetailService{
                {
                     for(Order_detail od : listOrderDetail)
                     {
-                        if(od != null)
+                        if(od != null && od.getOrders().getStatus() != 0)
                         {
                             listOrderDetai2.add(od);
                         }
