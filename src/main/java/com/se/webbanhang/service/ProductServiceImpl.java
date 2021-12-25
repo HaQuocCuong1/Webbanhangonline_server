@@ -433,11 +433,23 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Products> getlistProductsbySearchText(String searchText) {
         List<Products> productses = null;
+        List<Products> listProduct = new ArrayList<>();
+        int index = -1;
         if(searchText != null)
+        {
             productses = productRespository.findAllProduct(searchText);
+            for(Products p : productses)
+            {
+                if(p.getId() != index)
+                {
+                    listProduct.add(p);
+                    index = p.getId();
+                }
+            }
+        }
         else
-            productses = productRespository.findAll();
-        return productses;
+            listProduct = productRespository.findAll();
+        return listProduct;
     }
 
     @Override
