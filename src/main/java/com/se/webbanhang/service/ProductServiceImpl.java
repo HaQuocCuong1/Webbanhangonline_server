@@ -599,5 +599,35 @@ public class ProductServiceImpl implements ProductService{
         });
         return products;
     }
+
+    @Override
+    public List<Products> listProductInventory(int userId) {
+        Users theUsers = usersService.findbyId(userId);
+        List<Products> listproducts = theUsers.getProducts();
+        List<Products> listproduct = new ArrayList<>();
+        for(Products p : listproducts)
+        {
+            if(p.getQuantity() > 0)
+            {
+                listproduct.add(p);
+            }
+        }
+        return listproduct;
+    }
+
+    @Override
+    public List<Products> listProductSold(int userId) {
+        Users theUsers = usersService.findbyId(userId);
+        List<Products> listproducts = theUsers.getProducts();
+        List<Products> listproduct = new ArrayList<>();
+        for(Products p : listproducts)
+        {
+            if(p.getQuantity() == 0)
+            {
+                listproduct.add(p);
+            }
+        }
+        return listproduct;
+    }
     
 }

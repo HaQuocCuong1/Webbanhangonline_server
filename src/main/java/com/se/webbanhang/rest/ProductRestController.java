@@ -386,6 +386,14 @@ public class ProductRestController {
         int total = productService.totalApproveProduct();
         return total; 
     }
+    @GetMapping("/products/product-inventory/users/{userId}")
+    public List<Products> listProductInventory(@PathVariable int userId) {
+        return productService.listProductInventory(userId); 
+    }
+    @GetMapping("/products/product-sold/users/{userId}")
+    public List<Products> listProductSold(@PathVariable int userId) {
+        return productService.listProductSold(userId); 
+    }
     @PostMapping("/products/searchtext")
     public List<Products> searcehText(@RequestBody SearchProductDTO searchtext)
     {

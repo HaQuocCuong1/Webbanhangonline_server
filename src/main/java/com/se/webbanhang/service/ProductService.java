@@ -57,4 +57,6 @@ public interface ProductService {
     public List<Products> listproductnewsByStoreId(int storeId);
     public Integer totalAllProducByUser(int userId);
     public Integer totalApproveProduct();
+    public List<Products> listProductInventory(int userId);
+    public List<Products> listProductSold(int userId);
 }
