@@ -73,6 +73,11 @@ public class OrderRestController {
         }
         return theorder;
     }
+    @GetMapping("/orders/show-order/{orderdetailId}")
+    public Orders listOrdersByOrderdetailId(@PathVariable int orderdetailId)
+    {
+        return orderService.listOrdersByOrderdetailId(orderdetailId);
+    }
     @PostMapping("/orders")
     public String save(@RequestBody OrdersDTO theOrders)
     {

@@ -31,6 +31,8 @@ public class OrderServiceImpl implements OrderService{
     @Autowired
     private UsersService usersService;
     @Autowired
+    private OrderDetailService orderDetailService;
+    @Autowired
     private JavaMailSender mailSender;
     @Override
     public List<Orders> findAll() {
@@ -141,5 +143,17 @@ public class OrderServiceImpl implements OrderService{
         {
            throw new IllegalStateException("failed to send mail", e);
         }
+    }
+
+    @Override
+    public Orders listOrdersByOrderdetailId(int orderdetailId) {
+        Order_detail od = orderDetailService.findbyId(orderdetailId);
+        Orders theOrders = null;
+        if(od != null)
+        {
+            theOrders = od.getOrders();
+        }else
+            throw new NotFoundException("Did not find Orderdetail id: "+orderdetailId);
+        return theOrders;
     }
 }

@@ -18,4 +18,5 @@ public interface OrderService {
     public void save(Orders theOrders);
     public void delete(int id);
     public boolean updateStatusOrder(int id);
+    public Orders listOrdersByOrderdetailId(int orderdetailId);
 }
